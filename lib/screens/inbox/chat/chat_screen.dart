@@ -43,7 +43,7 @@ class ChatScreen extends StatelessWidget {
                   child: Container(
                     height: 31,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF415641),
+                      color: const Color(0xFF6FAE6F),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     alignment: Alignment.center,
@@ -140,7 +140,7 @@ class ChatScreen extends StatelessWidget {
                                 bottom: 10,
                               ),
                               child: Text(
-                                'Halo bub!',
+                                'Halo min!',
                                 style: TextStyle(
                                   fontFamily: 'Alata',
                                   fontSize: 13,
@@ -197,7 +197,7 @@ class ChatScreen extends StatelessWidget {
                                 bottom: 10,
                               ),
                               child: Text(
-                                'Halo sayang',
+                                'Halo kak! Ada yang bisa\nsaya bantu?',
                                 style: TextStyle(
                                   fontFamily: 'Alata',
                                   fontSize: 13,
@@ -313,7 +313,7 @@ class ChatScreen extends StatelessWidget {
                     child: const Text(
                       'Write a Message',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color.fromARGB(26, 11, 11, 11),
                         fontSize: 13,
                         fontFamily: 'Alata',
                       ),
@@ -330,7 +330,7 @@ class ChatScreen extends StatelessWidget {
                   ),
                   child: const Icon(
                     Icons.send,
-                    color: Color(0xFF6FAE6F),
+                    color: Color(0xFFA2D7A2),
                     size: 18,
                   ),
                 ),
