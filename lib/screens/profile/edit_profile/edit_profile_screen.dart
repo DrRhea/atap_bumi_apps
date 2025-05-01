@@ -27,7 +27,7 @@ class EditProfilePage extends StatelessWidget {
         builder: (context, constraints) {
           return Column(
             children: [
-              // App Bar Section
+              // App Bar Section - Simplified with just back button and title
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                 child: Row(
@@ -49,7 +49,7 @@ class EditProfilePage extends StatelessWidget {
                 ),
               ),
               
-              // Profile Photo Section
+              // Profile Photo Section - Changed to avatar icon
               Padding(
                 padding: const EdgeInsets.only(top: 24, bottom: 32),
                 child: Center(
@@ -58,12 +58,14 @@ class EditProfilePage extends StatelessWidget {
                       Container(
                         width: 129,
                         height: 129,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage("https://placehold.co/129x129"),
-                          ),
+                          color: Colors.grey[300],
+                        ),
+                        child: const Icon(
+                          Icons.person,
+                          size: 80,
+                          color: Colors.grey,
                         ),
                       ),
                       Positioned(
@@ -88,7 +90,7 @@ class EditProfilePage extends StatelessWidget {
                 ),
               ),
               
-              // Form Section
+              // Form Section - Made to match the design in the image
               Expanded(
                 child: Container(
                   width: double.infinity,
@@ -130,10 +132,10 @@ class EditProfilePage extends StatelessWidget {
                           value: '31/08/05',
                         ),
                         
-                        // Save Button
+                        // Save Button - Modified to match the design
                         const Spacer(),
                         SizedBox(
-                          width: 200,
+                          width: double.infinity, // Full width button
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {},
@@ -141,8 +143,9 @@ class EditProfilePage extends StatelessWidget {
                               backgroundColor: const Color(0xFFA2D7A2),
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(25), // More rounded
                               ),
+                              elevation: 0, // Remove shadow
                             ),
                             child: const Text(
                               'Save',
@@ -168,21 +171,20 @@ class EditProfilePage extends StatelessWidget {
 
   Widget buildProfileField({required String label, required String value}) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start, // Align label to the left
       children: [
+        Text(
+          label,
+          style: const TextStyle(
+            color: Color(0xFF5A5A5A),
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 8),
         Row(
+          mainAxisAlignment: MainAxisAlignment.end, // Align value to the right
           children: [
-            SizedBox(
-              width: 100,
-              child: Text(
-                label,
-                style: const TextStyle(
-                  color: Color(0xFF5A5A5A),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            const Spacer(),
             Text(
               value,
               style: const TextStyle(
@@ -193,12 +195,13 @@ class EditProfilePage extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Container(
-          height: 4,
+          height: 1, // Thinner line
+          width: double.infinity,
           decoration: BoxDecoration(
-            color: const Color(0xFFD0E7D0),
-            borderRadius: BorderRadius.circular(2),
+            color: const Color(0xFFE0E0E0), // Lighter gray
+            borderRadius: BorderRadius.circular(1),
           ),
         ),
       ],
