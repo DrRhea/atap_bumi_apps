@@ -9,121 +9,155 @@ class ReturnConfirmationScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFA2D7A2),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            elevation: 2,
+          ),
+        ),
       ),
       home: const ReturnConfirmation(),
     );
   }
 }
 
-class ReturnConfirmation extends StatelessWidget {
+class ReturnConfirmation extends StatefulWidget {
   const ReturnConfirmation({super.key});
+
+  @override
+  State<ReturnConfirmation> createState() => _ReturnConfirmationState();
+}
+
+class _ReturnConfirmationState extends State<ReturnConfirmation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+    _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
                 const Text(
                   'Return Confirmation',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 25,
+                    fontSize: 28,
                     fontFamily: 'Alexandria',
                     fontWeight: FontWeight.w800,
+                    letterSpacing: 0.5,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: screenSize.height * 0.05),
+                SizedBox(height: screenSize.height * 0.06),
                 Center(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: screenSize.width * 0.65,
-                        height: screenSize.width * 0.65,
-                        decoration: const ShapeDecoration(
-                          color: Color(0xFFA2D7A2),
-                          shape: OvalBorder(),
-                        ),
+                  child: ScaleTransition(
+                    scale: _scaleAnimation,
+                    child: Container(
+                      width: screenSize.width * 0.6,
+                      height: screenSize.width * 0.6,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFA2D7A2),
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
                       ),
-                      // Check mark icon in white
-                      Icon(
+                      child: Icon(
                         Icons.check,
-                        size: screenSize.width * 0.4,
+                        size: screenSize.width * 0.35,
                         color: Colors.white,
                       ),
-                    ],
+                    ),
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.05),
+                SizedBox(height: screenSize.height * 0.04),
                 const Text(
-                  'Succesfull !',
+                  'Successful!',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 24,
-                    fontFamily: 'Arial',
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Alexandria',
+                    fontWeight: FontWeight.w700,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: screenSize.height * 0.02),
                 const Text(
                   'Your return has been confirmed.\nOrder Completed Successfully.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
+                    color: Colors.black54,
+                    fontSize: 16,
                     fontFamily: 'Alexandria',
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.08),
+                SizedBox(height: screenSize.height * 0.06),
                 const Text(
-                  'Thanks for\nrenting with us !',
+                  'Thanks for\nrenting with us!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
-                    fontFamily: 'Arial',
-                    fontWeight: FontWeight.bold,
-                    height: 1.2,
+                    fontSize: 20,
+                    fontFamily: 'Alexandria',
+                    fontWeight: FontWeight.w600,
+                    height: 1.3,
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.08),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Add your navigation logic here
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA2D7A2),
-                      minimumSize: Size(screenSize.width * 0.5, 50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Done',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'Alexandria',
-                        fontWeight: FontWeight.w600,
-                      ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(screenSize.width * 0.6, 56),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    textStyle: const TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Alexandria',
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
                     ),
                   ),
+                  child: const Text('Done'),
                 ),
-                const SizedBox(height: 40),
+                SizedBox(height: screenSize.height * 0.04),
               ],
             ),
           ),
