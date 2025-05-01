@@ -53,30 +53,7 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              // Status bar mockup
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "09:41",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.signal_cellular_4_bar, size: 18),
-                      const SizedBox(width: 5),
-                      Icon(Icons.wifi, size: 18),
-                      const SizedBox(width: 5),
-                      Icon(Icons.battery_full, size: 18),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
+            const SizedBox(height: 20),
               // Header
               const Text(
                 "Payment Process",
@@ -126,14 +103,14 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                         const Text(
                           "Payment due in",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(
                           _formatTime(),
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

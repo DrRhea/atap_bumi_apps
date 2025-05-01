@@ -22,29 +22,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              // Status bar mockup
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "09:41",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Row(
-                    children: const [
-                      Icon(Icons.signal_cellular_4_bar, size: 18),
-                      SizedBox(width: 5),
-                      Icon(Icons.wifi, size: 18),
-                      SizedBox(width: 5),
-                      Icon(Icons.battery_full, size: 18),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
               
               // Back button and title
               Row(
@@ -78,21 +55,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         Icons.money, 
                         isSelected: selectedPayment == "Cash On Delivery",
                       ),
-                      
+                      const SizedBox(height:5),
                       // Transfer Bank
                       _buildPaymentOption(
                         "Transfer Bank", 
                         Icons.account_balance, 
                         isSelected: selectedPayment == "Transfer Bank",
                       ),
-                      
+                      const SizedBox(height:5),
                       // E-Wallet
                       _buildPaymentOption(
                         "E - Wallet", 
                         Icons.account_balance_wallet, 
                         isSelected: selectedPayment == "E - Wallet",
                       ),
-                      
+                      const SizedBox(height:5),
                       // Debit Card/Credit Card
                       _buildPaymentOption(
                         "Debit Card/Credit Card", 
@@ -114,7 +91,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFCAEAD0),
+                    backgroundColor: const Color.fromARGB(255, 164, 212, 173),
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),

@@ -42,18 +42,32 @@ class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE0F0E4),
-      appBar: AppBar(
-        title: const Text("My Order"),
-        backgroundColor: const Color(0xFF008055),
-        elevation: 0,
-      ),
-      body: ListView.builder(
-        itemCount: orders.length,
-        padding: const EdgeInsets.all(10),
-        itemBuilder: (context, index) {
-          return OrderCard(order: orders[index]);
-        },
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                "My Order",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: orders.length,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                itemBuilder: (context, index) {
+                  return OrderCard(order: orders[index]);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -122,25 +136,31 @@ class OrderCard extends StatelessWidget {
                 Text(order.days),
 
                 const SizedBox(height: 10),
-
-                // Harga dan Total
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                
+                // Harga dan Total 
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Rp${order.price.toStringAsFixed(0)}"),
-                    const SizedBox(height: 5),
-                    if (isReturned)
-                      const Center(
-                        child: Text(
-                          "View All",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
+                    const SizedBox(width: 1),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text("Rp${order.price.toStringAsFixed(0)}"),
+                        const SizedBox(height: 5),
+                        if (isReturned)
+                          const Center(
+                            child: Text(
+                              "View All",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ),
+                        Text(
+                          "Total ${order.unit.split(' ').first} Product: Rp${order.total.toStringAsFixed(0)}",
+                          textAlign: TextAlign.right,
                         ),
-                      ),
-                    Text(
-                      "Total ${order.unit.split(' ').first} Product: Rp${order.total.toStringAsFixed(0)}",
-                      textAlign: TextAlign.right,
+                      ],
                     ),
                   ],
                 ),
@@ -154,15 +174,20 @@ class OrderCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (isReturned)
-                        OutlinedButton(
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.black,
+                          ),
                           onPressed: () {},
                           child: const Text("Rent Again"),
                         ),
-                      const SizedBox(width: 8),
+                      if (isReturned) const SizedBox(width: 8),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: isReturned ? Colors.grey[600] : Colors.green[700],
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
                         ),
                         child: Text(isReturned ? "Rate" : "Return"),
                       ),
@@ -177,8 +202,6 @@ class OrderCard extends StatelessWidget {
     );
   }
 }
-
-
 class OrderItem {
   final String title;
   final String unit;

@@ -101,17 +101,34 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       Row(
                         children: [
-                          IconButton(
-                            icon: const Icon(Icons.remove),
-                            onPressed: () => decreaseQuantity(index),
+                          SizedBox(
+                            width: 28,
+                            height: 28,
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              iconSize: 18,
+                              icon: const Icon(Icons.remove),
+                              onPressed: () => decreaseQuantity(index),
+                            ),
                           ),
-                          Text(
-                            item.quantity.toString().padLeft(2, '0'),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 28,
+                            child: Center(
+                              child: Text(
+                                item.quantity.toString().padLeft(2, '0'),
+                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () => increaseQuantity(index),
+                          SizedBox(
+                            width: 28,
+                            height: 28,
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              iconSize: 18,
+                              icon: const Icon(Icons.add),
+                              onPressed: () => increaseQuantity(index),
+                            ),
                           ),
                         ],
                       ),
