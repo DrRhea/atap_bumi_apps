@@ -162,7 +162,7 @@ class _RatingReviewScreenState extends State<RatingReviewScreen> {
                                   shape: BoxShape.circle,
                                 ),
                                 child: const Icon(
-                                  Icons.add,
+                                  Icons.close,
                                   color: Colors.white,
                                   size: 8,
                                 ),
