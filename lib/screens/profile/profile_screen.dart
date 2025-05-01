@@ -176,7 +176,6 @@ class UserProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    
                     // Spacer tetap ada untuk mendorong konten ke atas
                     Spacer(),
                     
