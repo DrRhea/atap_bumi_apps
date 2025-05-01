@@ -9,6 +9,33 @@ class ProfileScreen extends StatelessWidget {
       theme: ThemeData.light(),
       home: Scaffold(
         body: UserProfileScreen(),
+        bottomNavigationBar: Container(
+          // Navbar sebagai bottomNavigationBar untuk memastikan full width
+          height: 60,
+          color: Color(0xFFA2D7A2),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              NavbarItem(
+                icon: Icons.home_outlined,
+                label: 'Home',
+              ),
+              NavbarItem(
+                icon: Icons.receipt_long_outlined,
+                label: 'Orders',
+              ),
+              NavbarItem(
+                icon: Icons.chat_bubble_outline,
+                label: 'Chat',
+              ),
+              NavbarItem(
+                icon: Icons.person,
+                label: 'Profile',
+                isSelected: true,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -150,28 +177,10 @@ class UserProfileScreen extends StatelessWidget {
                       ),
                     ),
                     
+                    // Spacer tetap ada untuk mendorong konten ke atas
                     Spacer(),
                     
-                    // Bottom navigation bar
-                    Container(
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFA2D7A2),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(24),
-                          topRight: Radius.circular(24),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          BottomNavItem(icon: Icons.home_outlined),
-                          BottomNavItem(icon: Icons.receipt_long_outlined),
-                          BottomNavItem(icon: Icons.chat_bubble_outline),
-                          BottomNavItem(icon: Icons.person, isSelected: true),
-                        ],
-                      ),
-                    ),
+                    // Menghilangkan navbar dari sini karena sudah dipindahkan ke Scaffold.bottomNavigationBar
                   ],
                 ),
               ),
@@ -235,25 +244,40 @@ class ProfileMenuItem extends StatelessWidget {
   }
 }
 
-// Bottom navigation item widget
-class BottomNavItem extends StatelessWidget {
+// Class untuk item navbar yang sederhana
+class NavbarItem extends StatelessWidget {
   final IconData icon;
+  final String label;
   final bool isSelected;
   
-  const BottomNavItem({
+  const NavbarItem({
     required this.icon,
+    required this.label,
     this.isSelected = false,
   });
   
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80,
-      height: 70,
-      child: Icon(
-        icon,
-        color: isSelected ? Colors.black : Colors.black54,
-        size: 26,
+      width: MediaQuery.of(context).size.width / 4,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            color: isSelected ? Colors.black : Colors.black54,
+            size: 24,
+          ),
+          SizedBox(height: 2),
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? Colors.black : Colors.black54,
+              fontSize: 10,
+              fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
+            ),
+          ),
+        ],
       ),
     );
   }

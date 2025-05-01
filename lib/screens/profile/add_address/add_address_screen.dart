@@ -98,7 +98,7 @@ class MyAddressPage extends StatelessWidget {
                           color: Colors.black,
                         ),
                         label: const Text(
-                          'Tambah Alamat Baru',
+                          'Add New Address',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 13,
