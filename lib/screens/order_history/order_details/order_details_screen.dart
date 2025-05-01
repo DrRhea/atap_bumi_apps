@@ -108,29 +108,30 @@ class OrderDetailsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            // Order Items
-            ..._buildProductList(),
-
-            const SizedBox(height: 12),
-
-            // Rent Duration & Total
+            // Products + Rent Summary 
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: Colors.black),
-                  bottom: BorderSide(color: Colors.black),
-                ),
+              decoration: BoxDecoration(
+                color: Colors.green[100],
+                borderRadius: BorderRadius.circular(12),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("3 Day"),
-                  Text("Total 3 Product: Rp390.000"),
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  ..._buildProductList(),
+                  const Divider(thickness: 1),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text("3 Day"),
+                        Text("Total 3 Product: Rp390.000"),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-
             const SizedBox(height: 12),
 
             // Order Info
@@ -189,7 +190,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green[700],
+                      backgroundColor: Colors.green[300],
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -207,59 +208,60 @@ class OrderDetailsScreen extends StatelessWidget {
   }
 
   List<Widget> _buildProductList() {
-    final List<Map<String, dynamic>> items = [
-      {
-        "title": "EIGER CAYMAN LITE SHOES",
-        "unit": "1 Unit",
-        "price": 30000,
-      },
-      {
-        "title": "TREKKING POLE HIGHTRACK 02 AREI OUTDOOGEAR",
-        "unit": "1 Unit",
-        "price": 15000,
-      },
-      {
-        "title": "EIGER STOVER 4P TENT",
-        "unit": "1 Unit",
-        "price": 85000,
-      },
-    ];
+  final List<Map<String, dynamic>> items = [
+    {
+      "title": "EIGER CAYMAN LITE SHOES",
+      "unit": "1 Unit",
+      "price": 30000,
+    },
+    {
+      "title": "TREKKING POLE HIGHTRACK 02 AREI OUTDOOGEAR",
+      "unit": "1 Unit",
+      "price": 15000,
+    },
+    {
+      "title": "EIGER STOVER 4P TENT",
+      "unit": "1 Unit",
+      "price": 85000,
+    },
+  ];
 
-    return items.map((item) {
-      return Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.green[100],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 60,
-              height: 60,
-              color: Colors.grey[300],
-              child: const Icon(Icons.image, color: Colors.grey),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item['title'],
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+  return items.map((item) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 60,
+            height: 60,
+            color: Colors.grey[300],
+            child: const Icon(Icons.image, color: Colors.grey),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item['title'],
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(item['unit']),
+                const SizedBox(height: 4),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "Rp${item['price']?.toStringAsFixed(0)}",
+                    style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  Text(item['unit']),
-                ],
-              ),
+                ),
+              ],
             ),
-            Text("Rp${item['price']?.toStringAsFixed(0)}"),
-          ],
-        ),
-      );
-    }).toList();
-  }
+          ),
+        ],
+      ),
+    );
+  }).toList();
+}
 }
