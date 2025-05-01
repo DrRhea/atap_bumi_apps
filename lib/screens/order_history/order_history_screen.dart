@@ -136,7 +136,7 @@ class OrderCard extends StatelessWidget {
                 Text(order.days),
 
                 const SizedBox(height: 10),
-
+                
                 // Harga dan Total 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,7 +202,6 @@ class OrderCard extends StatelessWidget {
     );
   }
 }
-
 class OrderItem {
   final String title;
   final String unit;

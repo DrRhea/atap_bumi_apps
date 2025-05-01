@@ -132,8 +132,6 @@ class OrderDetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-
             const SizedBox(height: 12),
 
             // Order Info
