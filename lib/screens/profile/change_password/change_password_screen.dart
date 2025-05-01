@@ -9,10 +9,20 @@ class ChangePasswordScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'SF Pro Display',
+        fontFamily: 'Alexandria', // Changed to match EditProfileScreen
         colorScheme: ColorScheme.light(
-          primary: const Color(0xFF6FAE6F),
+          primary: const Color(0xFFA2D7A2), // Updated to match EditProfileScreen
           secondary: const Color(0xFFA2D7A2),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFA2D7A2), // Updated to match
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            elevation: 0, // Removed elevation to match the flat design
+          ),
         ),
       ),
       home: const ChangePasswordPage(),
@@ -135,7 +145,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Password successfully changed!'),
-            backgroundColor: Color(0xFF6FAE6F),
+            backgroundColor: Color(0xFFA2D7A2), // Updated color
           ),
         );
         
@@ -275,45 +285,48 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xFF6FAE6F),
+                        color: Color(0xFFA2D7A2), // Updated color
                         decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
                   const SizedBox(height: 40),
                   
-                  // Change Password Button
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _isLoading ? null : _changePassword,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF6FAE6F),
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                  // Updated Change Password Button to match EditProfileScreen style
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 50, // Fixed height to match
+                      child: ElevatedButton(
+                        onPressed: _isLoading ? null : _changePassword,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFA2D7A2), // Updated color
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          elevation: 0, // Removed elevation
+                          disabledBackgroundColor: const Color(0xFFA2D7A2).withOpacity(0.5),
                         ),
-                        elevation: 4,
-                        shadowColor: Colors.black.withOpacity(0.25),
-                        disabledBackgroundColor: const Color(0xFFA2D7A2).withOpacity(0.5),
+                        child: _isLoading
+                            ? const SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 3,
+                                ),
+                              )
+                            : const Text(
+                                'Change Password',
+                                style: TextStyle(
+                                  fontSize: 17, // Updated to match
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Alexandria', // Added font family
+                                ),
+                              ),
                       ),
-                      child: _isLoading
-                          ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 3,
-                              ),
-                            )
-                          : const Text(
-                              'Change Password',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -419,7 +432,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(
-            color: Color(0xFF6FAE6F),
+            color: Color(0xFFA2D7A2), // Updated color
             width: 1.5,
           ),
         ),

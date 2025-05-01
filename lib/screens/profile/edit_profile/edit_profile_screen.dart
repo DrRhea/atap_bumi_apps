@@ -10,6 +10,16 @@ class EditProfileScreen extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFA2D7A2),
         fontFamily: 'Alexandria',
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFA2D7A2), // Warna hijau sesuai contoh
+            foregroundColor: Colors.white, // Warna teks putih
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            elevation: 0,
+          ),
+        ),
       ),
       home: const SafeArea(child: EditProfilePage()),
     );
@@ -132,26 +142,26 @@ class EditProfilePage extends StatelessWidget {
                           value: '31/08/05',
                         ),
                         
-                        // Save Button - Modified to match the design
+                        // Save Button - Diperbarui untuk konsisten dengan halaman lainnya
                         const Spacer(),
-                        SizedBox(
-                          width: double.infinity, // Full width button
-                          height: 50,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFA2D7A2),
-                              foregroundColor: Colors.white,
+                              minimumSize: const Size(double.infinity, 50),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25), // More rounded
+                                borderRadius: BorderRadius.circular(15),
                               ),
-                              elevation: 0, // Remove shadow
+                              elevation: 0,
                             ),
                             child: const Text(
                               'Save',
                               style: TextStyle(
-                                fontSize: 18,
+                                color: Colors.white,
+                                fontSize: 17,
                                 fontWeight: FontWeight.w600,
+                                fontFamily: 'Alexandria',
                               ),
                             ),
                           ),
