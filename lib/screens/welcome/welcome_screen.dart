@@ -46,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
         
-                    // Green bottom section
+        // Green bottom section
         Positioned(
           left: 0,
           right: 0,
@@ -71,7 +71,7 @@ class WelcomeScreen extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 32,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w900,
                       decoration: TextDecoration.none,
                     ),
                   ),
@@ -91,12 +91,12 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 40),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center, 
                     children: [
                       // Sign In button
                       Container(
-                        width: 116,
-                        height: 45,
+                        width: 130, 
+                        height: 50, 
                         decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(30),
@@ -106,17 +106,18 @@ class WelcomeScreen extends StatelessWidget {
                             'Sign In',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15,
+                              fontSize: 16, 
                               fontWeight: FontWeight.w600,
                               decoration: TextDecoration.none,
                             ),
                           ),
                         ),
                       ),
+                      SizedBox(width: 20),
                       // Sign Up button
                       Container(
-                        width: 116,
-                        height: 45,
+                        width: 130, 
+                        height: 50, 
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
@@ -134,7 +135,7 @@ class WelcomeScreen extends StatelessWidget {
                             'Sign Up',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 15,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                               decoration: TextDecoration.none,
                             ),
