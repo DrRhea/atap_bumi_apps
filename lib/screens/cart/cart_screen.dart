@@ -10,12 +10,11 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   List<CartItem> cartItems = [
     CartItem(name: "Eiger cayman lite shoes", price: 30000, quantity: 3, selected: true),
-    CartItem(name: "Eiger speedtrek 30L backpack", price: 35000, quantity: 1),
-    CartItem(name: "Eiger speedtrek 30L backpack", price: 35000, quantity: 1),
+    CartItem(name: "Eiger speedtrek 30L backpack", price: 40000, quantity: 1),
+    CartItem(name: "EIGER ECOSAVIOR 45 WS CARRIER WHITE", price: 70000, quantity: 1),
   ];
 
-  int get totalSelectedItems =>
-      cartItems.where((item) => item.selected).length;
+  int get totalSelectedItems => cartItems.where((item) => item.selected).length;
 
   int get totalPrice => cartItems
       .where((item) => item.selected)
@@ -41,11 +40,33 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
+  String formatRupiah(int number) {
+    final str = number.toString();
+    final buffer = StringBuffer();
+    int count = 0;
+
+    for (int i = str.length - 1; i >= 0; i--) {
+      buffer.write(str[i]);
+      count++;
+      if (count % 3 == 0 && i != 0) {
+        buffer.write('.');
+      }
+    }
+
+    return 'Rp${buffer.toString().split('').reversed.join()}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cart"),
+        title: const Text(
+          "Cart",
+          style: TextStyle(
+            fontFamily: 'Alexandria',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: false,
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
@@ -64,8 +85,7 @@ class _CartScreenState extends State<CartScreen> {
               itemBuilder: (context, index) {
                 final item = cartItems[index];
                 return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     children: [
                       GestureDetector(
@@ -74,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
                           item.selected
                               ? Icons.check_box
                               : Icons.check_box_outline_blank,
-                          color: item.selected ? Colors.green : Colors.black,
+                          color: item.selected ? Colors.green : const Color.fromARGB(255, 0, 0, 0),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -92,10 +112,18 @@ class _CartScreenState extends State<CartScreen> {
                             Text(
                               item.name,
                               style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                fontFamily: 'Alexandria',
+                              ),
                             ),
                             const SizedBox(height: 4),
-                            Text("Rp. ${item.price.toStringAsFixed(0)}"),
+                            Text(
+                              formatRupiah(item.price),
+                              style: const TextStyle(
+                                fontFamily: 'Alexandria',
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -116,7 +144,11 @@ class _CartScreenState extends State<CartScreen> {
                             child: Center(
                               child: Text(
                                 item.quantity.toString().padLeft(2, '0'),
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Alexandria',
+                                ),
                               ),
                             ),
                           ),
@@ -141,8 +173,7 @@ class _CartScreenState extends State<CartScreen> {
 
           // Bottom Bar
           Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               color: Colors.green[50],
               borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
@@ -153,10 +184,20 @@ class _CartScreenState extends State<CartScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Selected Items (${totalSelectedItems})",
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text("Total : Rp${totalPrice.toStringAsFixed(0)}",
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      "Selected Items (${totalSelectedItems})",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Alexandria',
+                      ),
+                    ),
+                    Text(
+                      "Total : ${formatRupiah(totalPrice)}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Alexandria',
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -171,7 +212,14 @@ class _CartScreenState extends State<CartScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text("Checkout"),
+                    child: const Text(
+                      "Checkout",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Alexandria',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ],

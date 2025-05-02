@@ -7,11 +7,17 @@ class OrderDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Order Details"),
+        title: const Text(
+          "Order Details",
+          style: TextStyle(
+            fontWeight: FontWeight.bold, 
+          ),
+        ),
         centerTitle: false,
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         elevation: 0,
+        titleSpacing: 0.0, 
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -35,10 +41,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 children: [
                   const Text(
                     "Finished Order",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   const Divider(thickness: 1),
                   const SizedBox(height: 6),
@@ -69,7 +72,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           ),
                           Text("23-03-2005 16.19"),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ],
@@ -108,7 +111,7 @@ class OrderDetailsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            // Products + Rent Summary 
+            // Products + Rent Summary
             Container(
               decoration: BoxDecoration(
                 color: Colors.green[100],
@@ -132,8 +135,6 @@ class OrderDetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-
             const SizedBox(height: 12),
 
             // Order Info
@@ -179,7 +180,8 @@ class OrderDetailsScreen extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green[300],
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      foregroundColor: Colors.white, 
+                      padding: const EdgeInsets.symmetric(vertical: 20), 
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -193,7 +195,8 @@ class OrderDetailsScreen extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green[300],
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      foregroundColor: Colors.white, 
+                      padding: const EdgeInsets.symmetric(vertical: 20), 
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -210,60 +213,52 @@ class OrderDetailsScreen extends StatelessWidget {
   }
 
   List<Widget> _buildProductList() {
-  final List<Map<String, dynamic>> items = [
-    {
-      "title": "EIGER CAYMAN LITE SHOES",
-      "unit": "1 Unit",
-      "price": 30000,
-    },
-    {
-      "title": "TREKKING POLE HIGHTRACK 02 AREI OUTDOOGEAR",
-      "unit": "1 Unit",
-      "price": 15000,
-    },
-    {
-      "title": "EIGER STOVER 4P TENT",
-      "unit": "1 Unit",
-      "price": 85000,
-    },
-  ];
+    final List<Map<String, dynamic>> items = [
+      {"title": "EIGER CAYMAN LITE SHOES", "unit": "1 Unit", "price": 30000},
+      {
+        "title": "TREKKING POLE HIGHTRACK 02 AREI OUTDOOGEAR",
+        "unit": "1 Unit",
+        "price": 15000,
+      },
+      {"title": "EIGER STOVER 4P TENT", "unit": "1 Unit", "price": 85000},
+    ];
 
-  return items.map((item) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 60,
-            height: 60,
-            color: Colors.grey[300],
-            child: const Icon(Icons.image, color: Colors.grey),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item['title'],
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(item['unit']),
-                const SizedBox(height: 4),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    "Rp${item['price']?.toStringAsFixed(0)}",
-                    style: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ],
+    return items.map((item) {
+      return Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              color: Colors.grey[300],
+              child: const Icon(Icons.image, color: Colors.grey),
             ),
-          ),
-        ],
-      ),
-    );
-  }).toList();
-}
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item['title'],
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(item['unit']),
+                  const SizedBox(height: 4),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "Rp${item['price']?.toStringAsFixed(0)}",
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList();
+  }
 }
