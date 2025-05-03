@@ -107,19 +107,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                 ),
               ),
-              
-              // Home indicator
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  width: 100,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
               const SizedBox(height: 10),
             ],
           ),
