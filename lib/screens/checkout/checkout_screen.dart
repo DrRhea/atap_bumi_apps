@@ -15,14 +15,31 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: BackButton(color: Colors.black),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text(
-          'Checkout',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        title: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            const SizedBox(width: 4),
+            const Flexible(
+              child: Text(
+                'Checkout',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22, 
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
         ),
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -86,11 +103,23 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         children: [
           Row(
             children: [
-              Image.network(
-                'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-59667705/eiger_eiger_sepatu_sneakers_cayman_lite_hiking_shoes_pria_-brown-_full01_3d6b17cf.jpg',
-                width: 60,
-                height: 60,
+              ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                'https://placekitten.com/60/60', // alternatif yg stabil
+                width: 48,
+                height: 48,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: 48,
+                    height: 48,
+                    color: Colors.grey[300],
+                    child: const Icon(Icons.broken_image, size: 20),
+                  );
+                },
               ),
+            ),
               const SizedBox(width: 12),
               const Expanded(
                 child: Column(
@@ -145,38 +174,43 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   Widget _buildRadioOption(String label, {required bool selected}) {
-    return Row(
-      children: [
-        Radio(
-          value: label,
-          groupValue: selected ? label : '',
-          onChanged: (_) {},
-          activeColor: Colors.green,
-        ),
-        Text(label),
-      ],
-    );
-  }
+  return Row(
+    children: [
+      Radio(
+        value: label,
+        groupValue: selected ? label : '',
+        onChanged: (_) {},
+        activeColor: Colors.green,
+      ),
+      Text(
+        label,
+        style: const TextStyle(fontSize: 12), 
+      ),
+    ],
+  );
+}
+
 
   Widget _buildDeliveryChoice(String label, String price) {
-    return RadioListTile(
-      value: label,
-      groupValue: _deliveryOption,
-      onChanged: (value) {
-        setState(() {
-          _deliveryOption = value.toString();
-        });
-      },
-      activeColor: Colors.green,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label),
-          Text(price),
-        ],
-      ),
-    );
-  }
+  return RadioListTile(
+    value: label,
+    groupValue: _deliveryOption,
+    onChanged: (value) {
+      setState(() {
+        _deliveryOption = value.toString();
+      });
+    },
+    activeColor: Colors.green,
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(label, style: const TextStyle(fontSize: 12)), // perkecil label
+        Text(price, style: const TextStyle(fontSize: 12)), // perkecil harga
+      ],
+    ),
+  );
+}
+
 
   Widget _buildRentalPeriod() {
     return Container(
