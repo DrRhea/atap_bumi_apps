@@ -75,32 +75,32 @@ class ProductScreen extends StatelessWidget {
       {
         'name': 'Shoes Eiger Air Man',
         'price': 'Rp. 50.000',
-        'image': 'assets/shoe_eiger.png',
+        'image': 'assets/images/BOOTS.png',
       },
       {
         'name': 'Shoes Salomon',
         'price': 'Rp. 40.000',
-        'image': 'assets/shoe_salomon.png',
+        'image': 'assets/images/SALOMON.png',
       },
       {
         'name': 'Jacket The Nort Face',
         'price': 'Rp. 50.000',
-        'image': 'assets/jacket_north_face.png',
+        'image': 'assets/images/JACKET2.png',
       },
       {
         'name': 'Eiger Sweatet T-shirt',
         'price': 'Rp. 40.000',
-        'image': 'assets/eiger_tshirt.png',
+        'image': 'assets/images/EIGER-SHIRT.png',
       },
       {
         'name': 'Eiger Tracktop',
         'price': 'Rp. 50.000',
-        'image': 'assets/eiger_tracktop.png',
+        'image': 'assets/images/EIGER-HAT.png',
       },
       {
         'name': 'Eiger Hats',
         'price': 'Rp. 40.000',
-        'image': 'assets/eiger_hats.png',
+        'image': 'assets/images/EIGER-HAT2.png',
       },
     ];
 
@@ -147,7 +147,6 @@ class ProductScreen extends StatelessWidget {
                     width: double.infinity,
                     height: double.infinity,
                     alignment: Alignment.center,
-                    // This simulates the image shown in your reference
                     child: _buildPlaceholderImage(name),
                   );
                 },

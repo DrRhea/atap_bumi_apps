@@ -8,8 +8,7 @@ class RatingReviewScreen extends StatefulWidget {
 }
 
 class _RatingReviewScreenState extends State<RatingReviewScreen> {
-  // Moved rating to the State class
-  int _rating = 4; // Default to 4 stars as shown in the screenshot
+  int _rating = 4; // Default to 4 stars
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +16,14 @@ class _RatingReviewScreenState extends State<RatingReviewScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Back button and upper part
+            // Back button
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               alignment: Alignment.centerLeft,
               child: IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () {
-                  // Go back functionality
+                  Navigator.pop(context); // Back functionality
                 },
               ),
             ),
@@ -35,18 +34,9 @@ class _RatingReviewScreenState extends State<RatingReviewScreen> {
                 Container(
                   width: 159,
                   height: 159,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: NetworkImage("https://placehold.co/159x159"),
-                      fit: BoxFit.cover,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.4),
-                        blurRadius: 5,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
+                  child: Image.asset(
+                    "assets/images/BOOTS.png",
+                    fit: BoxFit.contain, // Ensure image fits without stretching
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -102,16 +92,11 @@ class _RatingReviewScreenState extends State<RatingReviewScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(right: 5),
                               child: Icon(
-                                Icons.star_rounded, // Rounded star icon
+                                Icons.star_rounded,
                                 size: 40,
-                                color:
-                                    index < _rating
-                                        ? const Color(
-                                          0xFFFF6000,
-                                        ) // Orange color for filled stars
-                                        : Colors
-                                            .grey
-                                            .shade300, // Light grey for empty stars
+                                color: index < _rating
+                                    ? const Color(0xFFFF6000)
+                                    : Colors.grey.shade300,
                               ),
                             ),
                           ),
@@ -136,7 +121,7 @@ class _RatingReviewScreenState extends State<RatingReviewScreen> {
                     // Photo buttons
                     Row(
                       children: [
-                        // Camera button with dark background and green indicator
+                        // Camera button
                         Stack(
                           children: [
                             Container(

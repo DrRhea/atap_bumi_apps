@@ -29,7 +29,6 @@ class PageListScreen extends StatelessWidget {
       {'title': 'Review', 'route': AppRoutes.review},
 
       // Inbox Screen
-      {'title': 'Inbox', 'route': AppRoutes.inbox},
       {'title': 'Chat', 'route': AppRoutes.chat},
       {'title': 'Notification', 'route': AppRoutes.notification},
 

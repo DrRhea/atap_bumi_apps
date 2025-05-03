@@ -164,7 +164,7 @@ class NotificationScreen extends StatelessWidget {
             child: Container(
               height: 36,
               decoration: BoxDecoration(
-                color: const Color(0xFF415641),
+                color: const Color(0xFF6FAE6F),
                 borderRadius: BorderRadius.circular(10),
               ),
               alignment: Alignment.center,

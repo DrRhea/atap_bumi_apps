@@ -1,18 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
+
+  // Helper method to build svg icon with fallback
+  Widget buildSvgIcon(String assetName, IconData fallbackIcon) {
+    return SvgPicture.asset(
+      assetName,
+      width: 24,
+      height: 24,
+      colorFilter: ColorFilter.mode(
+        Colors.grey[400] ?? Colors.grey,
+        BlendMode.srcIn,
+      ),
+      placeholderBuilder: (BuildContext context) {
+        debugPrint('SVG fallback used for: $assetName');
+        return Icon(
+          fallbackIcon,
+          size: 24,
+          color: Colors.grey[400],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color(0xFFA2D7A2), // Light green background color (matching the image)
+        color: const Color(0xFFA2D7A2), // Light green background color
         child: Column(
           children: [
-            // Status bar space
-            const SizedBox(height: 40),
-
+            // Reduced status bar space for better top spacing
+            const SizedBox(height: 80), // Adjusted from 100 to 80
             
             // Login Title
             Align(
@@ -32,7 +53,7 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
             
-            const SizedBox(height: 16),
+            const SizedBox(height: 8), // Reduced from 16 to 8
             
             // Don't have an account text
             Align(
@@ -66,7 +87,7 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
             
-            const SizedBox(height: 40),
+            const SizedBox(height: 30), // Reduced from 50 to 30
             
             // White rounded container for form
             Expanded(
@@ -85,133 +106,154 @@ class SignInScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 30), // Reduced from 50 to 30
                       
-                      // Email Field - Revised to floating style with minimal shadow
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 2,
-                              offset: const Offset(0, 1),
-                              spreadRadius: 0,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 15),
-                            Icon(
-                              Icons.mail_outline,
-                              color: Colors.grey[400],
-                              size: 24,
-                            ),
-                            const SizedBox(width: 15),
-                            Text(
-                              'Email',
-                              style: TextStyle(
-                                color: Colors.grey[400],
-                                fontSize: 16,
-                                fontFamily: 'Clash Grotesk',
-                                fontWeight: FontWeight.w400,
+                      // Email Field with custom SVG icon
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint('Email field tapped');
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 5, // Increased for better shadow
+                                offset: const Offset(0, 2),
+                                spreadRadius: 0,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: buildSvgIcon(
+                                  'assets/icon/EMAIL.svg', 
+                                  Icons.email
+                                ),
+                              ),
+                              const SizedBox(width: 15),
+                              Text(
+                                'Email',
+                                style: TextStyle(
+                                  color: Colors.grey[400],
+                                  fontSize: 16,
+                                  fontFamily: 'Clash Grotesk',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       
                       const SizedBox(height: 20),
                       
-                      // Password Field - Revised to floating style with minimal shadow
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 2,
-                              offset: const Offset(0, 1),
-                              spreadRadius: 0,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 15),
-                            Icon(
-                              Icons.lock_outline,
-                              color: Colors.grey[400],
-                              size: 24,
-                            ),
-                            const SizedBox(width: 15),
-                            Text(
-                              'Password',
-                              style: TextStyle(
-                                color: Colors.grey[400],
-                                fontSize: 16,
-                                fontFamily: 'Clash Grotesk',
-                                fontWeight: FontWeight.w400,
+                      // Password Field with custom SVG icon
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint('Password field tapped');
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 5, // Increased for better shadow
+                                offset: const Offset(0, 2),
+                                spreadRadius: 0,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: buildSvgIcon(
+                                  'assets/icon/PASSWORD.svg', 
+                                  Icons.lock
+                                ),
+                              ),
+                              const SizedBox(width: 15),
+                              Text(
+                                'Password',
+                                style: TextStyle(
+                                  color: Colors.grey[400],
+                                  fontSize: 16,
+                                  fontFamily: 'Clash Grotesk',
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 10), // Reduced from 15 to 10
                       
                       // Forgot Password
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'Forgot Password?',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline,
-                            fontFamily: 'Clash Grotesk',
-                          ),
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 30),
-                      
-                      // Sign In Button (Added based on new design)
-                      Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFA2D7A2), // Same green as background
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 2,
-                              offset: const Offset(0, 1),
-                              spreadRadius: 0,
-                            ),
-                          ],
-                        ),
-                        child: Center(
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint('Forgot password tapped');
+                        },
+                        child: Align(
+                          alignment: Alignment.centerRight,
                           child: Text(
-                            'Sign In',
+                            'Forgot Password?',
                             style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Alexandria',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
+                              fontFamily: 'Clash Grotesk',
                             ),
                           ),
                         ),
                       ),
                       
-                      const Spacer(),
+                      const SizedBox(height: 30), // Reduced from 40 to 30
+                      
+                      // Sign In Button
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint('Sign in button tapped');
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFA2D7A2),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 5, // Increased for better shadow
+                                offset: const Offset(0, 2),
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Alexandria',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      
+                      const Spacer(flex: 1),
                       
                       // Or divider
                       Row(
@@ -243,71 +285,57 @@ class SignInScreen extends StatelessWidget {
                         ],
                       ),
                       
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20), // Reduced from 30 to 20
                       
-                      // Google button - Revised with lighter shadow
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 2,
-                              offset: const Offset(0, 1),
-                              spreadRadius: 0,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Google icon
-                            Image.network(
-                              'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg',
-                              width: 24,
-                              height: 24,
-                              errorBuilder: (context, error, stackTrace) => 
-                                Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Center(
-                                    child: Image.asset(
-                                      'assets/google_logo.png',
-                                      width: 24,
-                                      height: 24,
-                                      errorBuilder: (context, error, stackTrace) => 
-                                        Text(
-                                          "G",
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                    ),
-                                  ),
-                                ),
-                            ),
-                            const SizedBox(width: 10),
-                            Text(
-                              'Continue with Google',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontFamily: 'Alexandria',
-                                fontWeight: FontWeight.w600,
+                      // Google button with custom SVG icon
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint('Google sign-in button tapped');
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.15), // Adjusted shadow
+                                blurRadius: 8, // Increased blur
+                                offset: const Offset(0, 4), // Increased offset
+                                spreadRadius: 1,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Custom Google SVG icon with fallback
+                              SvgPicture.asset(
+                                'assets/icon/GOOGLE.svg',
+                                width: 24,
+                                height: 24,
+                                placeholderBuilder: (context) => Icon(
+                                  Icons.g_mobiledata,
+                                  size: 24,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                'Continue with Google',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontFamily: 'Alexandria',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 30), // Reduced from 50 to 30
                     ],
                   ),
                 ),

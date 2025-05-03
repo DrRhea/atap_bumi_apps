@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DetailProductScreen extends StatelessWidget {
   const DetailProductScreen({super.key});
@@ -21,7 +22,9 @@ class DetailProductScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.arrow_back),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ],
                 ),
@@ -46,8 +49,8 @@ class DetailProductScreen extends StatelessWidget {
                       // Image
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.network(
-                          'https://placehold.co/291x291',
+                        child: Image.asset(
+                          'assets/images/BOOTS.png',
                           height: 260,
                         ),
                       ),
@@ -141,14 +144,14 @@ class DetailProductScreen extends StatelessWidget {
                 ),
               ),
 
-              // Rating dengan bintang yang ujungnya dibulatkan
+              // Rating
               Padding(
                 padding: const EdgeInsets.only(left: 16.0, top: 12.0),
                 child: Row(
                   children: [
                     const Icon(
                       Icons.star_rounded,
-                      color: Color(0xFFFF6000), // warna emas
+                      color: Color(0xFFFF6000),
                       size: 20,
                     ),
                     const SizedBox(width: 4),
@@ -163,7 +166,6 @@ class DetailProductScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
 
               // Details Section
               Padding(
@@ -388,10 +390,14 @@ class DetailProductScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(
-                              Icons.shopping_cart,
-                              color: Colors.white,
-                              size: 20,
+                            SvgPicture.asset(
+                              'assets/icon/KERANJANG.svg',
+                              width: 20,
+                              height: 20,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.white,
+                                BlendMode.srcIn,
+                              ),
                             ),
                             const SizedBox(width: 8),
                             Text(
@@ -417,10 +423,14 @@ class DetailProductScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(
-                              Icons.bookmark_border,
-                              color: Colors.white,
-                              size: 20,
+                            SvgPicture.asset(
+                              'assets/icon/PAYMENT.svg',
+                              width: 20,
+                              height: 20,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.white,
+                                BlendMode.srcIn,
+                              ),
                             ),
                             const SizedBox(width: 8),
                             Text(

@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CreateNewPasswordScreen extends StatelessWidget {
   const CreateNewPasswordScreen({super.key});
+
+  // Helper method to build svg icon with fallback
+  Widget buildSvgIcon(String assetName, IconData fallbackIcon) {
+    return SvgPicture.asset(
+      assetName,
+      width: 22,
+      height: 22,
+      colorFilter: ColorFilter.mode(
+        const Color(0xFF9E9E9E),
+        BlendMode.srcIn,
+      ),
+      placeholderBuilder: (BuildContext context) {
+        debugPrint('SVG fallback used for: $assetName');
+        return Icon(
+          fallbackIcon,
+          size: 22,
+          color: const Color(0xFF9E9E9E),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +73,12 @@ class CreateNewPasswordScreen extends StatelessWidget {
                       const SizedBox(height: 40),
 
                       // New password field
-                      _buildPasswordField('Enter New Password'),
+                      _buildPasswordField('Enter New Password', 'assets/icon/PASSWORD.svg'),
 
                       const SizedBox(height: 20),
 
                       // Retype password field
-                      _buildPasswordField('Retype Password'),
+                      _buildPasswordField('Retype Password', 'assets/icon/PASSWORD.svg'),
 
                       const SizedBox(height: 30),
 
@@ -95,19 +117,6 @@ class CreateNewPasswordScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // Bottom indicator
-              Center(
-                child: Container(
-                  width: 134,
-                  height: 5,
-                  margin: const EdgeInsets.only(bottom: 8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFE0E0E0),
-                    borderRadius: BorderRadius.circular(2.5),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -115,7 +124,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPasswordField(String hint) {
+  Widget _buildPasswordField(String hint, String iconPath) {
     return Container(
       width: double.infinity,
       height: 50,
@@ -135,13 +144,9 @@ class CreateNewPasswordScreen extends StatelessWidget {
         decoration: InputDecoration(
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(vertical: 15),
-          prefixIcon: const Padding(
-            padding: EdgeInsets.only(left: 16.0, right: 8.0),
-            child: Icon(
-              Icons.lock_outlined,
-              color: Color(0xFF9E9E9E),
-              size: 22,
-            ),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 8.0),
+            child: buildSvgIcon(iconPath, Icons.lock_outlined),
           ),
           hintText: hint,
           hintStyle: const TextStyle(
