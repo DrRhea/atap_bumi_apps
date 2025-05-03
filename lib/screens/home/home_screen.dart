@@ -239,17 +239,6 @@ class HomeScreen extends StatelessWidget {
                     horizontal: 12,
                     vertical: 6,
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  // child: Text(
-                  //   'Just $price/night!',
-                  //   style: const TextStyle(
-                  //     color: Colors.white,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
                 ),
               ),
             ],
