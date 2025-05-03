@@ -44,9 +44,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        
-                    // Green bottom section
+        ),          // Green bottom section
         Positioned(
           left: 0,
           right: 0,
