@@ -243,13 +243,13 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Text(
-                    'Just $price/night!',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // child: Text(
+                  //   'Just $price/night!',
+                  //   style: const TextStyle(
+                  //     color: Colors.white,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                 ),
               ),
             ],
