@@ -131,6 +131,30 @@ flutter:
     - assets/images/UTENSIL.png
     - assets/images/WALKIE.png
     - assets/images/tent_article.webp
+    - assets/alat.png
+    - assets/baju.png
+    - assets/boots.png
+    - assets/celana.png
+    - assets/chair.png
+    - assets/double.png
+    - assets/flysheet.png
+    - assets/foam.png
+    - assets/gas.png
+    - assets/hammock.png
+    - assets/handy.png
+    - assets/hat.png
+    - assets/jacket.png
+    - assets/kompor.png
+    - assets/lamp.png
+    - assets/large.png
+    - assets/meja.png
+    - assets/menu1.png
+    - assets/menu2.png
+    - assets/nesting.png
+    - assets/selimut.png
+    - assets/tas-ijo.png
+    - assets/tenda1.png
+    - assets/air.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
