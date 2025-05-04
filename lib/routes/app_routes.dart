@@ -23,7 +23,6 @@ import '../screens/category/rating_review/rating_review_screen.dart';
 import '../screens/category/review/review_screen.dart';
 
 // Inbox Screen
-import '../screens/inbox/inbox_screen.dart';
 import '../screens/inbox/chat/chat_screen.dart';
 import '../screens/inbox/notification/notification_screen.dart';
 
@@ -75,7 +74,6 @@ class AppRoutes {
   static const String review = '/review';
 
   // Inbox Screen
-  static const String inbox = '/inbox';
   static const String chat = '/chat';
   static const String notification = '/notification';
 
@@ -126,7 +124,6 @@ class AppRoutes {
     review: (context) => const ReviewScreen(),
 
     // Inbox Screen
-    inbox: (context) => const InboxScreen(),
     chat: (context) => const ChatScreen(),
     notification: (context) => const NotificationScreen(),
 
