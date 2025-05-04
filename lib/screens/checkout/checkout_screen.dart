@@ -72,7 +72,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       padding: const EdgeInsets.all(12),
       child: Row(
         children: [
-          const Icon(Icons.location_on, color: Colors.green),
+          const Icon(Icons.location_on, color: Colors.black),
           const SizedBox(width: 8),
           const Expanded(
             child: Column(
