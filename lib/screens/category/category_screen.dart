@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SubcategoryItem {
-  final String title;
-  final int itemCount;
-  final String icon;
-
-  const SubcategoryItem({
-    required this.title,
-    required this.itemCount,
-    required this.icon,
-  });
-}
-
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
 
@@ -25,16 +13,17 @@ class CategoryScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
-        centerTitle: false,
+        centerTitle: false, // ini penting biar title-nya ga center
         title: const Text(
           'Category',
           style: TextStyle(
-            color: Color.fromARGB(255, 7, 7, 7),
+            color: Colors.black,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -78,17 +67,17 @@ class CategoryScreen extends StatelessWidget {
                     SubcategoryItem(
                       title: 'Single-Layer Tent',
                       itemCount: 10,
-                      icon: 'assets/images/SINGLE.png',
+                      icon: 'tenda1.png',
                     ),
                     SubcategoryItem(
                       title: 'Double-Layer Tent',
                       itemCount: 10,
-                      icon: 'assets/images/DOUBLE.png',
+                      icon: 'double.png',
                     ),
                     SubcategoryItem(
                       title: 'Flysheet',
                       itemCount: 5,
-                      icon: 'assets/images/FLYSHEET.png',
+                      icon: 'flysheet.png',
                     ),
                   ],
                 ),
@@ -101,27 +90,27 @@ class CategoryScreen extends StatelessWidget {
                     SubcategoryItem(
                       title: 'Hat / Cap',
                       itemCount: 7,
-                      icon: 'assets/images/HAT.png',
+                      icon: 'hat.png',
                     ),
                     SubcategoryItem(
                       title: 'Outdoor Shirt',
                       itemCount: 10,
-                      icon: 'assets/images/SHIRT.png',
+                      icon: 'baju.png',
                     ),
                     SubcategoryItem(
                       title: 'Jacket / Outerwear',
                       itemCount: 10,
-                      icon: 'assets/images/JACKET.png',
+                      icon: 'jacket.png',
                     ),
                     SubcategoryItem(
                       title: 'Outdoor Pants',
                       itemCount: 5,
-                      icon: 'assets/images/PANTS.png',
+                      icon: 'celana.png',
                     ),
                     SubcategoryItem(
                       title: 'Hiking Boots',
                       itemCount: 10,
-                      icon: 'assets/images/BOOTS.png',
+                      icon: 'boots.png',
                     ),
                   ],
                 ),
@@ -134,12 +123,12 @@ class CategoryScreen extends StatelessWidget {
                     SubcategoryItem(
                       title: 'Small Hiking Carrier',
                       itemCount: 25,
-                      icon: 'assets/images/SMALL.png',
+                      icon: 'tas-ijo.png',
                     ),
                     SubcategoryItem(
                       title: 'Large Hiking Carrier',
                       itemCount: 30,
-                      icon: 'assets/images/LARGE.png',
+                      icon: 'large.png',
                     ),
                   ],
                 ),
@@ -152,22 +141,22 @@ class CategoryScreen extends StatelessWidget {
                     SubcategoryItem(
                       title: 'Foam Mattress',
                       itemCount: 7,
-                      icon: 'assets/images/FOAM.png',
+                      icon: 'kompor.png',
                     ),
                     SubcategoryItem(
                       title: 'Sleeping Bag',
                       itemCount: 10,
-                      icon: 'assets/images/SLEEPBAG.png',
+                      icon: 'selimut.png',
                     ),
                     SubcategoryItem(
                       title: 'Air Mattress',
                       itemCount: 10,
-                      icon: 'assets/images/AIR.png',
+                      icon: 'air.png',
                     ),
                     SubcategoryItem(
                       title: 'Hammock',
                       itemCount: 5,
-                      icon: 'assets/images/HAMMOCK.png',
+                      icon: 'hammock.png',
                     ),
                   ],
                 ),
@@ -180,22 +169,22 @@ class CategoryScreen extends StatelessWidget {
                     SubcategoryItem(
                       title: 'Nesting',
                       itemCount: 7,
-                      icon: 'assets/images/NESTING.png',
+                      icon: 'nesting.png',
                     ),
                     SubcategoryItem(
                       title: 'Camping Stove',
                       itemCount: 10,
-                      icon: 'assets/images/STOVE.png',
+                      icon: 'kompor.png',
                     ),
                     SubcategoryItem(
                       title: 'Eating Utensils',
                       itemCount: 10,
-                      icon: 'assets/images/UTENSIL.png',
+                      icon: 'alat.png',
                     ),
                     SubcategoryItem(
                       title: 'Gas / Fuel',
                       itemCount: 5,
-                      icon: 'assets/images/GAS.png',
+                      icon: 'gas.png',
                     ),
                   ],
                 ),
@@ -208,22 +197,22 @@ class CategoryScreen extends StatelessWidget {
                     SubcategoryItem(
                       title: 'Folding Table',
                       itemCount: 7,
-                      icon: 'assets/images/TABLE.png',
+                      icon: 'meja.png',
                     ),
                     SubcategoryItem(
                       title: 'Folding Chair',
                       itemCount: 10,
-                      icon: 'assets/images/CHAIR.png',
+                      icon: 'chair.png',
                     ),
                     SubcategoryItem(
                       title: 'Camping Light',
                       itemCount: 10,
-                      icon: 'assets/images/LAMP.png',
+                      icon: 'lamp.png',
                     ),
                     SubcategoryItem(
                       title: 'Handy Talkie',
                       itemCount: 5,
-                      icon: 'assets/images/WALKIE.png',
+                      icon: 'handy.png',
                     ),
                   ],
                 ),
@@ -296,20 +285,13 @@ class CategoryCard extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: 40,
-                            height: 40,
                             child: Image.asset(
                               subcategory.icon,
-                              fit: BoxFit.contain,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
                                   width: 40,
                                   height: 40,
                                   color: Colors.grey.withOpacity(0.3),
-                                  child: const Icon(
-                                    Icons.broken_image,
-                                    color: Colors.grey,
-                                    size: 20,
-                                  ),
                                 );
                               },
                             ),
@@ -341,6 +323,18 @@ class CategoryCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class SubcategoryItem {
+  final String title;
+  final int itemCount;
+  final String icon;
+
+  SubcategoryItem({
+    required this.title,
+    required this.itemCount,
+    required this.icon,
+  });
 }
 
 class BottomNavBar extends StatelessWidget {
