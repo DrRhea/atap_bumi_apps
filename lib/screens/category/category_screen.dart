@@ -23,7 +23,7 @@ class CategoryScreen extends StatelessWidget {
           ),
         ),
       ),
-
+      
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -378,4 +378,16 @@ class NavbarItem extends StatelessWidget {
       ),
     );
   }
+}
+
+class SubcategoryItem {
+  final String title;
+  final int itemCount;
+  final String icon;
+
+  SubcategoryItem({
+    required this.title,
+    required this.itemCount,
+    required this.icon,
+  });
 }
