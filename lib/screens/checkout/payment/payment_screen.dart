@@ -91,18 +91,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 164, 212, 173),
+                    backgroundColor: const Color(0xFFA2D7A2), // Updated to match ReturnConfirmationScreen
+                    foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(15), // Updated border radius to 15
                     ),
-                    elevation: 0,
+                    elevation: 0, // Removed elevation
                   ),
                   child: const Text(
                     "Pay Now",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Alexandria', // Added font family
                     ),
                   ),
                 ),
