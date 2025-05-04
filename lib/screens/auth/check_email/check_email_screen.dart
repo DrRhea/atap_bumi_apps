@@ -5,8 +5,6 @@ class CheckEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -16,7 +14,7 @@ class CheckEmailScreen extends StatelessWidget {
             children: [
               const Spacer(flex: 2),
               
-              // Email icon
+              // Email icon (changed to opened email style)
               Container(
                 width: 100,
                 height: 100,
@@ -26,7 +24,7 @@ class CheckEmailScreen extends StatelessWidget {
                 ),
                 child: Center(
                   child: Icon(
-                    Icons.mail_outline,
+                    Icons.mail, // Changed from mail_outline to mail for opened email look
                     size: 56,
                     color: Colors.black.withOpacity(0.8),
                   ),

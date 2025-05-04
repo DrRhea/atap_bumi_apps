@@ -75,7 +75,7 @@ class ProductScreen extends StatelessWidget {
       {
         'name': 'Shoes Eiger Air Man',
         'price': 'Rp. 50.000',
-        'image': 'assets/images/BOOTS.png',
+        'image': 'assets/images/BOOTS-2.png',
       },
       {
         'name': 'Shoes Salomon',
