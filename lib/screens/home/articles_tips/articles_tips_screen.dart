@@ -51,38 +51,41 @@ class ArticlesTipsScreen extends StatelessWidget {
                   
                   const SizedBox(height: 16),
                   
-                  // Video placeholder (to be replaced with actual video player)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(10),
+                  // Video placeholder with background image
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/tent_article.webp'),
+                          fit: BoxFit.cover,
                         ),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            // Play button
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.8),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.play_arrow_rounded,
-                                size: 30,
-                                color: Colors.black87,
-                              ),
+                      ),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          // Play button
+                          Container(
+                            width: 48,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.8),
+                              shape: BoxShape.circle,
                             ),
-                          ],
-                        ),
+                            child: const Icon(
+                              Icons.play_arrow_rounded,
+                              size: 30,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
+                ),
                   
                   const SizedBox(height: 20),
                   
