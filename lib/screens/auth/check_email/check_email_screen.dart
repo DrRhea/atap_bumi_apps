@@ -130,19 +130,6 @@ class CheckEmailScreen extends StatelessWidget {
               ),
               
               const SizedBox(height: 24),
-              
-              // Bottom indicator
-              Container(
-                width: 134,
-                height: 5,
-                margin: const EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFE0E0E0),
-                  borderRadius: BorderRadius.circular(3),
-                ),
-              ),
-              
-              const SizedBox(height: 10),
             ],
           ),
         ),

@@ -8,8 +8,8 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Status bar space
-          const SizedBox(height: 44),
+          // Status bar space - slightly reduced
+          const SizedBox(height: 40),
 
           // Header with back button and inbox title
           Padding(
@@ -25,14 +25,14 @@ class ChatScreen extends StatelessWidget {
                 const Spacer(),
                 Row(
                   children: [
-                    // Status icons in top right (battery, wifi, etc.)
+                    // Status icons in top right (battery, wifi, etc.) - placeholder
                   ],
                 ),
               ],
             ),
           ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 12), // Reduced from 16
 
           // Chat and Notification tabs
           Padding(
@@ -80,22 +80,31 @@ class ChatScreen extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 14),
+          const SizedBox(height: 10), // Reduced from 14
 
-          // Admin Banner
+          // Admin Banner with customer service icon
           Container(
             width: double.infinity,
             height: 46,
             color: const Color(0xFF6FAE6F),
-            padding: const EdgeInsets.only(left: 63),
-            alignment: Alignment.centerLeft,
-            child: const Text(
-              'Admin',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-              ),
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.support_agent,
+                  color: Colors.white,
+                  size: 24,
+                ),
+                const SizedBox(width: 10),
+                const Text(
+                  'Admin',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
             ),
           ),
 
@@ -107,7 +116,7 @@ class ChatScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: ListView(
                   children: [
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16), // Reduced from 24
 
                     // First received message
                     Align(
@@ -154,7 +163,7 @@ class ChatScreen extends StatelessWidget {
                                 '12.08',
                                 style: TextStyle(
                                   color: Colors.grey[600],
-                                  fontSize: 5,
+                                  fontSize: 8,
                                   fontFamily: 'Alata',
                                 ),
                               ),
@@ -164,7 +173,7 @@ class ChatScreen extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16), // Reduced from 24
 
                     // Sent message
                     Align(
@@ -211,7 +220,7 @@ class ChatScreen extends StatelessWidget {
                                 '12.20',
                                 style: TextStyle(
                                   color: Colors.grey[600],
-                                  fontSize: 5,
+                                  fontSize: 8,
                                   fontFamily: 'Alata',
                                 ),
                               ),
@@ -221,7 +230,7 @@ class ChatScreen extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16), // Reduced from 24
 
                     // Second received message
                     Align(
@@ -268,7 +277,7 @@ class ChatScreen extends StatelessWidget {
                                 '12.22',
                                 style: TextStyle(
                                   color: Colors.grey[600],
-                                  fontSize: 5,
+                                  fontSize: 8,
                                   fontFamily: 'Alata',
                                 ),
                               ),
@@ -277,6 +286,8 @@ class ChatScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    const SizedBox(height: 16), // Added spacing at the bottom
                   ],
                 ),
               ),
@@ -309,14 +320,23 @@ class ChatScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    alignment: Alignment.centerLeft,
-                    child: const Text(
-                      'Write a Message',
-                      style: TextStyle(
-                        color: Color.fromARGB(26, 11, 11, 11),
-                        fontSize: 13,
-                        fontFamily: 'Alata',
-                      ),
+                    child: Row(
+                      children: const [
+                        Text(
+                          'Write a Message',
+                          style: TextStyle(
+                            color: Color.fromARGB(26, 11, 11, 11),
+                            fontSize: 13,
+                            fontFamily: 'Alata',
+                          ),
+                        ),
+                        Spacer(), // Pushes the icon to the right
+                        Icon(
+                          Icons.emoji_emotions, // Smiley icon moved to the right
+                          color: Color.fromARGB(26, 11, 11, 11),
+                          size: 18,
+                        ),
+                      ],
                     ),
                   ),
                 ),

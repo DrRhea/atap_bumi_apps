@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -21,30 +22,17 @@ class WelcomeScreen extends StatelessWidget {
           right: 0,
           child: Column(
             children: [
-              Text(
-                'ATAP BUMI',
-                style: TextStyle(
-                  color: Color(0xFF8BC34A),
-                  fontSize: 38,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
-                  decoration: TextDecoration.none,
-                ),
+              SvgPicture.asset(
+                'assets/icon/LOGO-1.svg',
+                height: 160, // Increased from 120 to 160
+                width: 200,  // Increased from 150 to 200
+                fit: BoxFit.contain,
               ),
-              SizedBox(height: 20),
-              // Placeholder for logo image
-              Container(
-                height: 120,
-                width: 150,
-                // Uncomment and update this section when you have the logo ready
-                // child: Image.asset(
-                //   'assets/images/logo.png',
-                //   fit: BoxFit.contain,
-                // ),
-              ),
+              const SizedBox(height: 20),
             ],
           ),
-        ),          // Green bottom section
+        ),          
+        // Green bottom section
         Positioned(
           left: 0,
           right: 0,
@@ -52,19 +40,19 @@ class WelcomeScreen extends StatelessWidget {
           child: Container(
             height: 310,
             decoration: BoxDecoration(
-              color: Color(0xFFA2D7A2),
-              borderRadius: BorderRadius.only(
+              color: const Color(0xFFA2D7A2),
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 40),
-                  Text(
+                  const SizedBox(height: 40),
+                  const Text(
                     'Welcome!',
                     style: TextStyle(
                       color: Colors.black,
@@ -73,10 +61,10 @@ class WelcomeScreen extends StatelessWidget {
                       decoration: TextDecoration.none,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                     width: 285,
-                    child: Text(
+                    child: const Text(
                       'Get high-quality camping equipment when you need it, where you need it.',
                       style: TextStyle(
                         color: Colors.black,
@@ -87,19 +75,20 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Sign In button
                       Container(
-                        width: 116,
-                        height: 45,
+                        width: 130,
+                        height: 50,
+                        margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Sign In',
                             style: TextStyle(
@@ -113,8 +102,8 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       // Sign Up button
                       Container(
-                        width: 116,
-                        height: 45,
+                        width: 130,
+                        height: 50,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
@@ -127,7 +116,7 @@ class WelcomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Sign Up',
                             style: TextStyle(
@@ -141,7 +130,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   // No bottom indicator line - removed as per instruction
                 ],
               ),

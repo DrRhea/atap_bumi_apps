@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
 
-   @override
+  // Helper method to build svg icon with fallback
+  Widget buildSvgIcon(String assetName, IconData fallbackIcon) {
+    return SvgPicture.asset(
+      assetName,
+      width: 22,
+      height: 22,
+      colorFilter: ColorFilter.mode(
+        const Color(0xFF9E9E9E),
+        BlendMode.srcIn,
+      ),
+      placeholderBuilder: (BuildContext context) {
+        debugPrint('SVG fallback used for: $assetName');
+        return Icon(
+          fallbackIcon,
+          size: 22,
+          color: const Color(0xFF9E9E9E),
+        );
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -59,7 +81,7 @@ class ResetPasswordScreen extends StatelessWidget {
               
               const SizedBox(height: 40),
               
-              // Email input field
+              // Email input field - Modified to use SVG icon
               Container(
                 width: double.infinity,
                 height: 50,
@@ -75,19 +97,18 @@ class ResetPasswordScreen extends StatelessWidget {
                   ],
                 ),
                 child: TextFormField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 15),
                     prefixIcon: Padding(
-                      padding: EdgeInsets.only(left: 16.0, right: 8.0),
-                      child: Icon(
-                        Icons.email_outlined,
-                        color: Color(0xFF9E9E9E),
-                        size: 22,
+                      padding: const EdgeInsets.only(left: 16.0, right: 8.0),
+                      child: buildSvgIcon(
+                        'assets/icon/EMAIL.svg', 
+                        Icons.email_outlined
                       ),
                     ),
                     hintText: 'Email',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       color: Color(0xFF9E9E9E),
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
@@ -131,19 +152,6 @@ class ResetPasswordScreen extends StatelessWidget {
               
               // Bottom spacer to push indicator to bottom
               const Spacer(),
-              
-              // Bottom indicator
-              Center(
-                child: Container(
-                  width: 134,
-                  height: 5,
-                  margin: const EdgeInsets.only(bottom: 8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFE0E0E0),
-                    borderRadius: BorderRadius.circular(2.5),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart'; // Added import for SVG
 
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
@@ -234,7 +235,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   PasswordInputField(
                     controller: _currentPasswordController,
                     hintText: 'Current Password',
-                    icon: Icons.lock_outline,
+                    svgPath: 'assets/icon/PASSWORD.svg', // Changed to use custom SVG
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Current password cannot be empty';
@@ -248,7 +249,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   PasswordInputField(
                     controller: _newPasswordController,
                     hintText: 'New Password',
-                    icon: Icons.lock_outline,
+                    svgPath: 'assets/icon/PASSWORD.svg', // Changed to use custom SVG
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'New password cannot be empty';
@@ -262,7 +263,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   PasswordInputField(
                     controller: _retypePasswordController,
                     hintText: 'Confirm New Password',
-                    icon: Icons.lock_outline,
+                    svgPath: 'assets/icon/PASSWORD.svg', // Changed to use custom SVG
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Password confirmation cannot be empty';
@@ -373,14 +374,14 @@ class PasswordRequirement extends StatelessWidget {
 class PasswordInputField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
-  final IconData icon;
+  final String svgPath; // Changed to use SVG path instead of IconData
   final String? Function(String?)? validator;
 
   const PasswordInputField({
     super.key,
     required this.controller,
     required this.hintText,
-    required this.icon,
+    required this.svgPath, // Updated parameter
     this.validator,
   });
 
@@ -403,9 +404,17 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
           color: Color(0xFFBDBDBD),
           fontSize: 16,
         ),
-        prefixIcon: Icon(
-          widget.icon,
-          color: const Color(0xFF757575),
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: SvgPicture.asset(
+            widget.svgPath,
+            width: 24,
+            height: 24,
+            colorFilter: const ColorFilter.mode(
+              Color(0xFF757575),
+              BlendMode.srcIn,
+            ),
+          ),
         ),
         suffixIcon: GestureDetector(
           onTap: () {

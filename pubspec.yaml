@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,7 +39,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    flutter_svg: ^2.0.7
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -63,10 +63,15 @@ flutter:
     - assets/icon/AKSESORIS.svg
     - assets/icon/AKTIVITAS.svg
     - assets/icon/EMAIL.svg
+    - assets/icon/GOOGLE.svg
     - assets/icon/HOME-1.svg
     - assets/icon/HOME-2.svg
     - assets/icon/KATEGORI.svg
     - assets/icon/KERANJANG.svg
+    - assets/icon/LOGO-1.svg
+    - assets/icon/LOGO-2.svg
+    - assets/icon/LOGO-3.svg
+    - assets/icon/LOGO-4.svg
     - assets/icon/MASAK.svg
     - assets/icon/MESSAGE.svg
     - assets/icon/PAKAIAN.svg
@@ -85,24 +90,35 @@ flutter:
     - assets/images/BOOTS.png
     - assets/images/CHAIR.png
     - assets/images/DOUBLE.png
+    - assets/images/EIGER-BAG.png
+    - assets/images/EIGER-BAG2.png
+    - assets/images/EIGER-BOOTS.png
+    - assets/images/EIGER-HAT.png
+    - assets/images/EIGER-HAT2.png
+    - assets/images/EIGER-SHIRT.png
+    - assets/images/EIGER-TENT.png
     - assets/images/FLYSHEET.png
     - assets/images/FOAM.png
     - assets/images/GAS.png
     - assets/images/HAMMOCK.png
     - assets/images/HAT.png
     - assets/images/JACKET.png
+    - assets/images/JACKET2.png
     - assets/images/LAMP.png
     - assets/images/LARGE.png
     - assets/images/NESTING.png
     - assets/images/PAKET.png
     - assets/images/PAKET2.png
     - assets/images/PANTS.png
+    - assets/images/SALOMON.png
     - assets/images/SHIRT.png
     - assets/images/SINGLE.png
     - assets/images/SLEEPBAG.png
+    - assets/images/SLEEPBAG2.png
     - assets/images/SMALL.png
     - assets/images/STOVE.png
     - assets/images/TABLE.png
+    - assets/images/TREKKING.png
     - assets/images/UTENSIL.png
     - assets/images/WALKIE.png
 

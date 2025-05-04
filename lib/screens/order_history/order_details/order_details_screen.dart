@@ -214,13 +214,9 @@ class OrderDetailsScreen extends StatelessWidget {
 
   List<Widget> _buildProductList() {
     final List<Map<String, dynamic>> items = [
-      {"title": "EIGER CAYMAN LITE SHOES", "unit": "1 Unit", "price": 30000},
-      {
-        "title": "TREKKING POLE HIGHTRACK 02 AREI OUTDOOGEAR",
-        "unit": "1 Unit",
-        "price": 15000,
-      },
-      {"title": "EIGER STOVER 4P TENT", "unit": "1 Unit", "price": 85000},
+      {"title": "EIGER CAYMAN LITE SHOES", "unit": "1 Unit", "price": 30000, "image": "assets/images/EIGER-BOOTS.png"},
+      {"title": "TREKKING POLE HIGHTRACK 02 AREI OUTDOOGEAR", "unit": "1 Unit", "price": 15000, "image": "assets/images/TREKKING.png"},
+      {"title": "EIGER STOVER 4P TENT", "unit": "1 Unit", "price": 85000, "image": "assets/images/EIGER-TENT.png"},
     ];
 
     return items.map((item) {
@@ -232,8 +228,13 @@ class OrderDetailsScreen extends StatelessWidget {
             Container(
               width: 60,
               height: 60,
-              color: Colors.grey[300],
-              child: const Icon(Icons.image, color: Colors.grey),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                image: DecorationImage(
+                  image: AssetImage(item['image']),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(

@@ -1,11 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
   const OrderHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const OrderPage();
+    return MaterialApp(
+      theme: ThemeData.light(),
+      debugShowCheckedModeBanner: false, // Changed to false to remove debug banner
+      home: Scaffold(
+        body: OrderPage(),
+        bottomNavigationBar: Container(
+          height: 60,
+          color: Color(0xFFA2D7A2),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              NavbarItem(
+                svgPath: 'assets/icon/HOME-2.svg',
+              ),
+              NavbarItem(
+                svgPath: 'assets/icon/KATEGORI.svg',
+              ),
+              NavbarItem(
+                svgPath: 'assets/icon/AKTIVITAS.svg',
+                isSelected: true,
+              ),
+              NavbarItem(
+                svgPath: 'assets/icon/PROFILE-2.svg',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -82,6 +111,13 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isReturned = order.status == "Returned";
 
+    String getImagePath(String title) {
+      if (title == "EIGER SPEEDTREK 30L BACKPACK") return "assets/images/EIGER-BAG.png";
+      if (title == "AVTECH - Sleeping Bag Outdoor Camping Hiking") return "assets/images/SLEEPBAG2.png";
+      if (title == "EIGER CAYMAN LITE SHOES") return "assets/images/EIGER-BOOTS.png";
+      return "assets/images/default.png"; // Fallback jika tidak ada
+    }
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.all(12),
@@ -92,15 +128,18 @@ class OrderCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Placeholder Gambar
+          // Gambar Produk
           Container(
             width: 60,
             height: 80,
             decoration: BoxDecoration(
               color: Colors.grey[300],
               borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                image: AssetImage(getImagePath(order.title)),
+                fit: BoxFit.cover,
+              ),
             ),
-            child: const Icon(Icons.image, size: 30, color: Colors.grey),
           ),
           const SizedBox(width: 10),
 
@@ -202,6 +241,7 @@ class OrderCard extends StatelessWidget {
     );
   }
 }
+
 class OrderItem {
   final String title;
   final String unit;
@@ -218,4 +258,29 @@ class OrderItem {
     required this.total,
     required this.status,
   });
+}
+
+class NavbarItem extends StatelessWidget {
+  final String svgPath;
+  final bool isSelected;
+  
+  const NavbarItem({
+    required this.svgPath,
+    this.isSelected = false,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width / 4,
+      child: Center(
+        child: SvgPicture.asset(
+          svgPath,
+          width: 24,
+          height: 24,
+          color: isSelected ? Colors.black : const Color.fromARGB(255, 255, 255, 255),
+        ),
+      ),
+    );
+  }
 }

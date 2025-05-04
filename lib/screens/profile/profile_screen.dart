@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -7,6 +8,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light(),
+      debugShowCheckedModeBanner: false, 
       home: Scaffold(
         body: UserProfileScreen(),
         bottomNavigationBar: Container(
@@ -17,20 +19,16 @@ class ProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               NavbarItem(
-                icon: Icons.home_outlined,
-                label: 'Home',
+                svgPath: 'assets/icon/HOME-2.svg',
               ),
               NavbarItem(
-                icon: Icons.receipt_long_outlined,
-                label: 'Orders',
+                svgPath: 'assets/icon/KATEGORI.svg',
               ),
               NavbarItem(
-                icon: Icons.chat_bubble_outline,
-                label: 'Chat',
+                svgPath: 'assets/icon/AKTIVITAS.svg',
               ),
               NavbarItem(
-                icon: Icons.person,
-                label: 'Profile',
+                svgPath: 'assets/icon/PROFILE-2.svg',
                 isSelected: true,
               ),
             ],
@@ -130,22 +128,23 @@ class UserProfileScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 25),
                     
-                    // My Profile item
+                    // My Profile item with SVG icon
                     ProfileMenuItem(
-                      icon: Icons.person_outline,
+                      svgPath: 'assets/icon/PROFILE-2.svg',
                       title: 'My Profile',
                       isBold: true,
                     ),
                     
-                    // My Address item
+                    // My Address item with original icon
                     ProfileMenuItem(
-                      icon: Icons.location_on_outlined,
+                      iconData: Icons.location_on_outlined,
                       title: 'My Address',
+                      useIcon: true,
                     ),
                     
-                    // Change Password item
+                    // Change Password item with SVG icon
                     ProfileMenuItem(
-                      icon: Icons.lock_outline,
+                      svgPath: 'assets/icon/PASSWORD.svg',
                       title: 'Change Password',
                     ),
                     
@@ -176,10 +175,7 @@ class UserProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Spacer tetap ada untuk mendorong konten ke atas
                     Spacer(),
-                    
-                    // Menghilangkan navbar dari sini karena sudah dipindahkan ke Scaffold.bottomNavigationBar
                   ],
                 ),
               ),
@@ -191,16 +187,20 @@ class UserProfileScreen extends StatelessWidget {
   }
 }
 
-// Profile menu item widget
+// Profile menu item widget updated to use SVG icons or regular icons
 class ProfileMenuItem extends StatelessWidget {
-  final IconData icon;
+  final String? svgPath;
+  final IconData? iconData;
   final String title;
   final bool isBold;
+  final bool useIcon;
   
   const ProfileMenuItem({
-    required this.icon,
+    this.svgPath,
+    this.iconData,
     required this.title,
     this.isBold = false,
+    this.useIcon = false,
   });
   
   @override
@@ -211,11 +211,18 @@ class ProfileMenuItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Row(
             children: [
-              Icon(
-                icon,
-                size: 26,
-                color: Colors.black54,
-              ),
+              useIcon 
+              ? Icon(
+                  iconData,
+                  size: 26,
+                  color: Colors.black54,
+                )
+              : SvgPicture.asset(
+                  svgPath!,
+                  width: 24,
+                  height: 24,
+                  color: Colors.black54,
+                ),
               SizedBox(width: 15),
               Text(
                 title,
@@ -243,15 +250,13 @@ class ProfileMenuItem extends StatelessWidget {
   }
 }
 
-// Class untuk item navbar yang sederhana
+// Navbar item updated to use SVG icons without labels
 class NavbarItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
+  final String svgPath;
   final bool isSelected;
   
   const NavbarItem({
-    required this.icon,
-    required this.label,
+    required this.svgPath,
     this.isSelected = false,
   });
   
@@ -259,24 +264,13 @@ class NavbarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width / 4,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? Colors.black : Colors.black54,
-            size: 24,
-          ),
-          SizedBox(height: 2),
-          Text(
-            label,
-            style: TextStyle(
-              color: isSelected ? Colors.black : Colors.black54,
-              fontSize: 10,
-              fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
-            ),
-          ),
-        ],
+      child: Center(
+        child: SvgPicture.asset(
+          svgPath,
+          width: 24,
+          height: 24,
+          color: isSelected ? Colors.black : const Color.fromARGB(255, 255, 255, 255),
+        ),
       ),
     );
   }

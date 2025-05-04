@@ -56,6 +56,17 @@ class _CartScreenState extends State<CartScreen> {
     return 'Rp${buffer.toString().split('').reversed.join()}';
   }
 
+  String getImagePath(String name) {
+    if (name.toLowerCase().contains("eiger cayman lite shoes")) {
+      return "assets/images/EIGER-BOOTS.png";
+    } else if (name.toLowerCase().contains("eiger speedtrek 30l backpack")) {
+      return "assets/images/EIGER-BAG.png";
+    } else if (name.toLowerCase().contains("eiger ecosavior 45 ws carrier white")) {
+      return "assets/images/EIGER-BAG2.png";
+    }
+    return "assets/images/default.png"; // Fallback jika tidak ada gambar
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,8 +112,13 @@ class _CartScreenState extends State<CartScreen> {
                       Container(
                         width: 60,
                         height: 60,
-                        color: Colors.grey[300],
-                        child: const Icon(Icons.image),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          image: DecorationImage(
+                            image: AssetImage(getImagePath(item.name)),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
