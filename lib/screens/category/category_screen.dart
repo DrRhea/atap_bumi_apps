@@ -7,6 +7,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const BottomNavBar(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -334,8 +335,13 @@ class SubcategoryItem {
     required this.itemCount,
     required this.icon,
   });
+}
 
-  Widget _buildBottomNavBar(BuildContext context) {
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       height: 60,
       color: const Color(0xFFA2D7A2),
