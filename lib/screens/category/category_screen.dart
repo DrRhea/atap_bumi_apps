@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -6,10 +7,13 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const BottomNavBar(),
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
+        centerTitle: false, // ini penting biar title-nya ga center
         title: const Text(
           'Category',
           style: TextStyle(
@@ -19,6 +23,7 @@ class CategoryScreen extends StatelessWidget {
           ),
         ),
       ),
+      
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -315,6 +320,61 @@ class CategoryCard extends StatelessWidget {
               )
               .toList(),
         ],
+      ),
+    );
+  }
+}
+
+class SubcategoryItem {
+  final String title;
+  final int itemCount;
+  final String icon;
+
+  SubcategoryItem({
+    required this.title,
+    required this.itemCount,
+    required this.icon,
+  });
+}
+
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      color: const Color(0xFFA2D7A2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          NavbarItem(svgPath: 'assets/icon/HOME-2.svg'),
+          NavbarItem(svgPath: 'assets/icon/KATEGORI.svg', isSelected: true),
+          NavbarItem(svgPath: 'assets/icon/AKTIVITAS.svg'),
+          NavbarItem(svgPath: 'assets/icon/PROFILE-2.svg'),
+        ],
+      ),
+    );
+  }
+}
+
+class NavbarItem extends StatelessWidget {
+  final String svgPath;
+  final bool isSelected;
+
+  const NavbarItem({required this.svgPath, this.isSelected = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width / 4,
+      child: Center(
+        child: SvgPicture.asset(
+          svgPath,
+          width: 24,
+          height: 24,
+          color: isSelected ? Colors.black : Colors.white,
+        ),
       ),
     );
   }
