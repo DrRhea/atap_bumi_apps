@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentConfirmationScreen extends StatelessWidget {
   const PaymentConfirmationScreen({super.key});
@@ -11,8 +12,8 @@ class PaymentConfirmationScreen extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFA2D7A2), // Warna hijau sesuai contoh
-            foregroundColor: Colors.white, // Warna teks putih
+            backgroundColor: const Color(0xFFA2D7A2),
+            foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
@@ -59,21 +60,19 @@ class _PaymentConfirmationState extends State<PaymentConfirmation>
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    // Menghitung ukuran yang responsif
     final double circleSize = screenSize.width * 0.45;
     final double iconSize = circleSize * 0.6;
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        // Menggunakan Center untuk memastikan konten berada di tengah
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Mengatur konten ke tengah secara vertikal
-                crossAxisAlignment: CrossAxisAlignment.center, // Mengatur konten ke tengah secara horizontal
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
                     'Payment Confirmation',
@@ -104,10 +103,16 @@ class _PaymentConfirmationState extends State<PaymentConfirmation>
                             ),
                           ],
                         ),
-                        child: Icon(
-                          Icons.check,
-                          size: iconSize,
-                          color: Colors.white,
+                        child: Center(
+                          child: SizedBox(
+                            width: iconSize,
+                            height: iconSize,
+                            child: SvgPicture.asset(
+                              'assets/icon/PAY-CONFIRM.svg',
+                              width: iconSize,
+                              height: iconSize,
+                            ),
+                          ),
                         ),
                       ),
                     ),

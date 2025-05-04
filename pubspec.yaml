@@ -76,6 +76,9 @@ flutter:
     - assets/icon/MESSAGE.svg
     - assets/icon/PAKAIAN.svg
     - assets/icon/PASSWORD.svg
+    - assets/icon/PASSWORD2.svg
+    - assets/icon/PAY-CONFIRM.svg
+    - assets/icon/PAY-RETURN.svg
     - assets/icon/PAYMENT.svg
     - assets/icon/PHONE.svg
     - assets/icon/PROFILE-1.svg
@@ -87,6 +90,8 @@ flutter:
     - assets/images/AIR.png
     - assets/images/ARTIKEL1.jpg
     - assets/images/ARTIKEL2.jpg
+    - assets/images/ARTIKEL3.jpg
+    - assets/images/ARTIKEL4.jpg
     - assets/images/BOOTS.png
     - assets/images/BOOTS-2.png
     - assets/images/CHAIR.png
@@ -107,9 +112,12 @@ flutter:
     - assets/images/JACKET2.png
     - assets/images/LAMP.png
     - assets/images/LARGE.png
+    - assets/images/MAPS.jpg
     - assets/images/NESTING.png
     - assets/images/PAKET.png
     - assets/images/PAKET2.png
+    - assets/images/PAKET3.png
+    - assets/images/PAKET4.png
     - assets/images/PANTS.png
     - assets/images/SALOMON.png
     - assets/images/SHIRT.png

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,25 +10,25 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildHeader(),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 _buildSearchBar(),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 _buildCategoryGrid(),
-                const SizedBox(height: 32),
-                _buildRecommendationSection(),
-                const SizedBox(height: 32),
-                _buildArticlesSection(),
+                const SizedBox(height: 24),
+                _buildRecommendationSection(context),
+                const SizedBox(height: 24),
+                _buildArticlesSection(context),
               ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar: _buildBottomNavBar(),
+      bottomNavigationBar: _buildBottomNavBar(context),
     );
   }
 
@@ -40,22 +41,38 @@ class HomeScreen extends StatelessWidget {
           children: [
             const Text(
               'Hello, Bening',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Alexandria',
+              ),
             ),
             const Text(
-              'Planning a picnic? Here\'s what you might need!',
-              style: TextStyle(fontSize: 16, color: Colors.black87),
+              'Ready for camping? Let\'s gear up!',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black87,
+                fontFamily: 'Alexandria',
+              ),
             ),
           ],
         ),
         Row(
           children: [
             IconButton(
-              icon: const Icon(Icons.shopping_cart_outlined, size: 28),
+              icon: SvgPicture.asset(
+                'assets/icon/KERANJANG.svg',
+                width: 28,
+                height: 28,
+              ),
               onPressed: () {},
             ),
             IconButton(
-              icon: const Icon(Icons.chat_bubble_outline, size: 28),
+              icon: SvgPicture.asset(
+                'assets/icon/MESSAGE.svg',
+                width: 28,
+                height: 28,
+              ),
               onPressed: () {},
             ),
           ],
@@ -66,19 +83,23 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildSearchBar() {
     return Container(
-      height: 50,
+      height: 48,
       decoration: BoxDecoration(
         color: Colors.green.shade100,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         children: [
-          const SizedBox(width: 16),
+          const SizedBox(width: 12),
           Icon(Icons.search, color: Colors.grey.shade700),
           const SizedBox(width: 8),
           const Text(
             'Search Gear',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.grey,
+              fontFamily: 'Alexandria',
+            ),
           ),
         ],
       ),
@@ -86,80 +107,97 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildCategoryGrid() {
+    final categories = [
+      {'label': 'Tent', 'icon': 'assets/icon/TENDA.svg'},
+      {'label': 'Sleeping Gear', 'icon': 'assets/icon/TIDUR.svg'},
+      {'label': 'Backpack', 'icon': 'assets/icon/TAS.svg'},
+      {'label': 'Cooking Gear', 'icon': 'assets/icon/MASAK.svg'},
+      {'label': 'Outdoor Apparel', 'icon': 'assets/icon/PAKAIAN.svg'},
+      {'label': 'Accessories', 'icon': 'assets/icon/AKSESORIS.svg'},
+    ];
+
     return GridView.count(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 3,
-      childAspectRatio: 1.0,
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      children: [
-        _buildCategoryItem(label: 'Tent', color: Colors.green),
-        _buildCategoryItem(label: 'Sleeping Gear', color: Colors.green),
-        _buildCategoryItem(label: 'Backpack', color: Colors.green),
-        _buildCategoryItem(label: 'Cooking Gear', color: Colors.green),
-        _buildCategoryItem(label: 'Outdoor Apparel', color: Colors.green),
-        _buildCategoryItem(label: 'Accessories', color: Colors.green),
-      ],
+      childAspectRatio: 0.85, // Adjusted for larger items
+      crossAxisSpacing: 10, // Increased spacing
+      mainAxisSpacing: 10, // Increased spacing
+      children: categories.map((category) {
+        return _buildCategoryItem(
+          label: category['label']!,
+          iconPath: category['icon']!,
+          color: const Color(0xFFD7EAD9),
+        );
+      }).toList(),
     );
   }
 
-  Widget _buildCategoryItem({required String label, required Color color}) {
+  Widget _buildCategoryItem({
+    required String label,
+    required String iconPath,
+    required Color color,
+  }) {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 70,
-            width: 70,
+            height: 80, // Increased size
+            width: 80,
             decoration: BoxDecoration(
-              color: color.withOpacity(0.7),
+              color: color,
               borderRadius: BorderRadius.circular(12),
             ),
+            child: Center(
+              child: SvgPicture.asset(
+                iconPath,
+                width: 48, // Larger icon
+                height: 48,
+              ),
+            ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 8), // Adjusted spacing
           Text(
             label,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 14, // Increased font size
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Alexandria',
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildRecommendationSection() {
-    // Daftar paket rekomendasi - bisa ditambahkan lebih banyak paket
-    final List<Map<String, dynamic>> packages = [
+  Widget _buildRecommendationSection(BuildContext context) {
+    final packages = [
       {
         'title': 'Trip Starter Pack',
         'price': '115k',
         'items': 'Tent, Carrier, Sleeping Bag, Accessories',
-        'icon': Icons.hiking,
+        'image': 'assets/images/PAKET.png',
       },
       {
         'title': 'Picnic Hangout Pack',
         'price': '90k',
         'items': '4 Portable Chair, 1 Table',
-        'icon': Icons.chair_outlined,
-      },
-      {
-        'title': 'Fishing Adventure Pack',
-        'price': '135k',
-        'items': 'Fishing Rod, Tackle Box, Chair, Cooler',
-        'icon': Icons.sailing,
+        'image': 'assets/images/PAKET2.png',
       },
       {
         'title': 'Hiking Essentials Pack',
         'price': '80k',
         'items': 'Backpack, Water Bottle, First Aid Kit, Map',
-        'icon': Icons.directions_walk,
+        'image': 'assets/images/PAKET3.png',
       },
       {
         'title': 'Camping Cookout Pack',
         'price': '110k',
         'items': 'Portable Stove, Cookware Set, Utensils',
-        'icon': Icons.outdoor_grill,
+        'image': 'assets/images/PAKET4.png',
       },
     ];
 
@@ -171,34 +209,37 @@ class HomeScreen extends StatelessWidget {
           children: [
             const Text(
               'You Might Like',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Alexandria',
+              ),
             ),
-            // Optional: Tambahkan tombol "See All" jika diinginkan
             TextButton(
-              onPressed: () {
-                // Navigasi ke halaman paket lengkap
-              },
-              child: const Text('See All'),
+              onPressed: () {},
+              child: const Text(
+                'See All',
+                style: TextStyle(fontFamily: 'Alexandria'),
+              ),
             ),
           ],
         ),
-        const SizedBox(height: 16),
-        // Container dengan tinggi tetap untuk slider
+        const SizedBox(height: 12),
         SizedBox(
-          height: 220,
+          height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: packages.length,
             itemBuilder: (context, index) {
               return Container(
-                width: 280, // Lebar tetap untuk setiap kartu paket
-                margin: EdgeInsets.only(right: 12),
+                width: MediaQuery.of(context).size.width * 0.6,
+                margin: const EdgeInsets.only(right: 10),
                 child: _buildPackageCard(
-                  title: packages[index]['title'],
-                  price: packages[index]['price'],
-                  items: packages[index]['items'],
-                  imageIcon: packages[index]['icon'],
-                  bgColor: Colors.green.shade100,
+                  title: packages[index]['title']!,
+                  price: packages[index]['price']!,
+                  items: packages[index]['items']!,
+                  imagePath: packages[index]['image']!,
+                  bgColor: Colors.grey.shade300,
                 ),
               );
             },
@@ -212,11 +253,10 @@ class HomeScreen extends StatelessWidget {
     required String title,
     required String price,
     required String items,
-    required IconData imageIcon,
+    required String imagePath,
     required Color bgColor,
   }) {
     return Container(
-      height: double.infinity, // Kartu mengisi tinggi yang tersedia
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(8),
@@ -224,30 +264,23 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Icon dan bagian harga
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Icon(imageIcon, size: 60, color: Colors.orange),
+          Container(
+            height: 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
               ),
-              Positioned(
-                top: 16,
-                right: 16,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                ),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(8),
+                topRight: Radius.circular(8),
               ),
-            ],
+            ),
           ),
-          // Judul dan item section
           Expanded(
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(10),
               decoration: const BoxDecoration(
                 color: Color(0xFFD7EAD9),
                 borderRadius: BorderRadius.only(
@@ -261,8 +294,9 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Alexandria',
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -270,7 +304,11 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     items,
-                    style: TextStyle(color: Colors.grey[700]),
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 12,
+                      fontFamily: 'Alexandria',
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -283,33 +321,31 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildArticlesSection() {
-    // Daftar artikel contoh - bisa ditambahkan lebih banyak artikel
-    final List<Map<String, String>> articles = [
+  Widget _buildArticlesSection(BuildContext context) {
+    final articles = [
       {
         'title': 'Tent Setup for Beginners',
         'description':
-            'Learn the essential steps to pitch your tent with ease and confidence. Perfect for first-time campers looking to avoid common mistakes and stay comfortable outdoors.',
+            'Learn the essential steps to pitch your tent with ease and confidence.',
+        'image': 'assets/images/ARTIKEL1.jpg',
       },
       {
-        'title': 'Choosing the Right Backpack for Your Trip',
+        'title': 'Choosing the Right Backpack',
         'description':
-            'A guide to picking the perfect backpack based on trip length, terrain, and comfort.',
+            'A guide to picking the perfect backpack for your trip.',
+        'image': 'assets/images/ARTIKEL2.jpg',
       },
       {
         'title': 'Best Campfire Foods',
         'description':
-            'Delicious and easy meal ideas that will make your camping experience more enjoyable.',
+            'Delicious and easy meal ideas for your camping experience.',
+        'image': 'assets/images/ARTIKEL3.jpg',
       },
       {
         'title': 'Essential Hiking Safety Tips',
         'description':
-            'Stay safe on the trails with these proven hiking safety guidelines for all experience levels.',
-      },
-      {
-        'title': 'Winter Camping Guide',
-        'description':
-            'How to prepare and enjoy camping during the colder months while staying warm and comfortable.',
+            'Stay safe on the trails with these proven guidelines.',
+        'image': 'assets/images/ARTIKEL4.jpg',
       },
     ];
 
@@ -321,31 +357,35 @@ class HomeScreen extends StatelessWidget {
           children: [
             const Text(
               'Outdoor Articles & Tips',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Alexandria',
+              ),
             ),
-            // Optional: Tambahkan tombol "See All" jika diinginkan
             TextButton(
-              onPressed: () {
-                // Navigasi ke halaman artikel lengkap
-              },
-              child: const Text('See All'),
+              onPressed: () {},
+              child: const Text(
+                'See All',
+                style: TextStyle(fontFamily: 'Alexandria'),
+              ),
             ),
           ],
         ),
-        const SizedBox(height: 16),
-        // Container dengan tinggi tetap untuk slider
+        const SizedBox(height: 12),
         SizedBox(
-          height: 220,
+          height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: articles.length,
             itemBuilder: (context, index) {
               return Container(
-                width: 280, // Lebar tetap untuk setiap kartu artikel
-                margin: EdgeInsets.only(right: 12),
+                width: MediaQuery.of(context).size.width * 0.6,
+                margin: const EdgeInsets.only(right: 10),
                 child: _buildArticleCard(
                   title: articles[index]['title']!,
                   description: articles[index]['description']!,
+                  imagePath: articles[index]['image']!,
                   bgColor: Colors.green.shade100,
                 ),
               );
@@ -359,10 +399,10 @@ class HomeScreen extends StatelessWidget {
   Widget _buildArticleCard({
     required String title,
     required String description,
+    required String imagePath,
     required Color bgColor,
   }) {
     return Container(
-      height: double.infinity, // Kartu mengisi tinggi yang tersedia
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(8),
@@ -370,18 +410,19 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Area gambar placeholder (tinggi tetap)
           Container(
-            height: 80,
+            height: 100,
             decoration: BoxDecoration(
-              color: Colors.grey.shade400,
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+              ),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
               ),
             ),
           ),
-          // Area konten (mengambil sisa ruang)
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -391,8 +432,9 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Alexandria',
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -402,10 +444,12 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       description,
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 11,
                         color: Colors.grey.shade700,
+                        fontFamily: 'Alexandria',
                       ),
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                     ),
                   ),
                 ],
@@ -417,27 +461,53 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomNavBar() {
+  Widget _buildBottomNavBar(BuildContext context) {
     return Container(
       height: 60,
-      decoration: BoxDecoration(color: Colors.green.shade100),
+      color: const Color(0xFFA2D7A2),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildNavBarItem(Icons.home_outlined, true),
-          _buildNavBarItem(Icons.article_outlined, false),
-          _buildNavBarItem(Icons.explore_outlined, false),
-          _buildNavBarItem(Icons.person_outline, false),
+          NavbarItem(
+            svgPath: 'assets/icon/HOME-2.svg',
+            isSelected: true,
+          ),
+          NavbarItem(
+            svgPath: 'assets/icon/KATEGORI.svg',
+          ),
+          NavbarItem(
+            svgPath: 'assets/icon/AKTIVITAS.svg',
+          ),
+          NavbarItem(
+            svgPath: 'assets/icon/PROFILE-2.svg',
+          ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildNavBarItem(IconData icon, bool isSelected) {
-    return Icon(
-      icon,
-      size: 28,
-      color: isSelected ? Colors.green.shade700 : Colors.grey.shade700,
+class NavbarItem extends StatelessWidget {
+  final String svgPath;
+  final bool isSelected;
+
+  const NavbarItem({
+    required this.svgPath,
+    this.isSelected = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width / 4,
+      child: Center(
+        child: SvgPicture.asset(
+          svgPath,
+          width: 24,
+          height: 24,
+          color: isSelected ? Colors.black : Colors.white,
+        ),
+      ),
     );
   }
 }

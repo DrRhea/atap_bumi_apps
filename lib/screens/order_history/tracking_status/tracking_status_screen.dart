@@ -23,7 +23,7 @@ class TrackingStatusScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Peta
+            // Map
             Container(
               margin: const EdgeInsets.all(16),
               height: 200,
@@ -31,15 +31,13 @@ class TrackingStatusScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.grey[300],
                 image: const DecorationImage(
-                  image: NetworkImage(
-                    "https://i.imgur.com/RzTgLln.png", // Placeholder peta, ganti jika perlu
-                  ),
+                  image: AssetImage('assets/images/MAPS.jpg'), // Custom map image
                   fit: BoxFit.cover,
                 ),
               ),
             ),
 
-            // Estimasi pengiriman
+            // Estimated arrival and progress
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(16),
@@ -51,9 +49,8 @@ class TrackingStatusScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Estimated arrival on March 23th",
-                    style: TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
+                    "Estimated arrival on March 23rd",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 24),
                   // Progress bar
@@ -79,12 +76,12 @@ class TrackingStatusScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  // Label progress
+                  // Progress labels
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
-                        "Is being deliver",
+                        "Package Picked Up",
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
@@ -92,10 +89,42 @@ class TrackingStatusScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
-                        "Order Arrived",
+                        "Order Delivered",
                         style: TextStyle(fontSize: 12),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 16),
+                  // Detailed tracking information
+                  const Text(
+                    "Delivery Details:",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "Origin: Camping Gear Rental Warehouse, Jakarta",
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  const Text(
+                    "Current Location: On transit to Bandung (May 4th, 2025, 10:30 AM)",
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  const Text(
+                    "Destination: Your Address, Bandung",
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "Status: Your camping gear (Tent, Sleeping Bag, Cooking Set) is en route and expected to arrive by March 23rd, 2025.",
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  const Text(
+                    "Courier: FastCamp Delivery Service",
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  const Text(
+                    "Tracking ID: TRK-2025-045678",
+                    style: TextStyle(fontSize: 12),
                   ),
                 ],
               ),
