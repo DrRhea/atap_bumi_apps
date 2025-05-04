@@ -179,14 +179,23 @@ class OrderDetailsScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green[300],
+                      backgroundColor: const Color(0xFFA2D7A2), // Updated to match ReturnConfirmationScreen
                       foregroundColor: Colors.white, 
                       padding: const EdgeInsets.symmetric(vertical: 20), 
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(15), // Updated border radius to 15
+                      ),
+                      elevation: 0, // Removed elevation
+                    ),
+                    child: const Text(
+                      "Rent Again",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Alexandria', // Added font family
                       ),
                     ),
-                    child: const Text("Rent Again"),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -194,14 +203,23 @@ class OrderDetailsScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green[300],
+                      backgroundColor: const Color(0xFFA2D7A2), // Updated to match ReturnConfirmationScreen
                       foregroundColor: Colors.white, 
                       padding: const EdgeInsets.symmetric(vertical: 20), 
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(15), // Updated border radius to 15
+                      ),
+                      elevation: 0, // Removed elevation
+                    ),
+                    child: const Text(
+                      "Rate",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Alexandria', // Added font family
                       ),
                     ),
-                    child: const Text("Rate"),
                   ),
                 ),
               ],

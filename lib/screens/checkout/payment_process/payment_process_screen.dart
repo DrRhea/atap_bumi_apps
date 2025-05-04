@@ -221,7 +221,7 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       backgroundColor: Colors.grey, 
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       elevation: 0,
                     ),
@@ -229,7 +229,8 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                       "Cancel",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
                         fontFamily: 'Alexandria',
                       ),
                     ),
@@ -243,9 +244,9 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 15),
-                      backgroundColor: Color.fromARGB(255, 115, 208, 138), // warna hijau tua / bisa disesuaikan
+                      backgroundColor: const Color(0xFFA2D7A2), // Updated to match ReturnConfirmationScreen
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       elevation: 0,
                     ),
@@ -253,7 +254,8 @@ class _PaymentProcessScreenState extends State<PaymentProcessScreen> {
                       "Ok",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
                         fontFamily: 'Alexandria',
                       ),
                     ),
