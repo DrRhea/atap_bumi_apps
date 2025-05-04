@@ -17,13 +17,13 @@ class CategoryScreen extends StatelessWidget {
         title: const Text(
           'Category',
           style: TextStyle(
-            color: Colors.black,
+            color: Color.fromARGB(255, 7, 7, 7),
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
